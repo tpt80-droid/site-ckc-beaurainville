@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil de Groupes - Canoë Kayak Club de Beaurainville</title>
+    <title>Accueil Groupes & Scolaires - Canoë Kayak Club de Beaurainville</title>
     <style>
-        /* On reprend exactement le même style de base que la page d'accueil pour une navigation fluide */
         :root {
             --primary: #1e3a8a;
             --primary-hover: #1d4ed8;
@@ -111,7 +110,6 @@
         }
 
         .hero {
-            /* Image de fond : j'ai utilisé la photo du groupe dans la rivière pour coller au thème */
             background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.5)), url('canche-canoe-001.jpg') no-repeat center center;
             background-size: cover;
             color: var(--white);
@@ -210,7 +208,7 @@
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
                 <li><a href="groupes.html" class="nav-link active">Accueil Groupes</a></li>
-                <li><a href="index.html#reservation" class="nav-btn">Réserver en ligne</a></li>
+                <li><a href="mailto:canoekayakbeaurainville@orange.fr" class="nav-btn">Réservation par mail</a></li>
             </ul>
         </div>
     </nav>
@@ -225,18 +223,17 @@
         <section style="padding: 5rem 1.5rem; background-color: var(--white); text-align: center;">
             <div class="container" style="max-width: 1000px;">
 
-                <h2 class="section-title">Nos Activités & Formules</h2>
+                <h2 class="section-title">Nos Activités & Formules Groupes</h2>
 
                 <img src="flyer-groupe.avif" alt="Activités de Groupe CKC Beaurainville"
                     style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 4rem;">
-                <div
-                    style="background-color: #f8fafc; border: 2px dashed #cbd5e1; padding: 4rem 2rem; border-radius: 1rem;">
+                
+                <div style="background-color: #f8fafc; border: 2px dashed #cbd5e1; padding: 4rem 2rem; border-radius: 1rem;">
                     <h3 style="font-size: 1.75rem; color: var(--primary); margin-bottom: 1rem;">Grille Tarifaire Groupes
                         2024</h3>
-                    <p
-                        style="color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                         Consultez tous nos tarifs dégressifs en fonction de la taille de votre groupe (- de 8 personnes,
-                        8 à 16 personnes, ou plus de 16 personnes)[cite: 165].
+                        8 à 16 personnes, ou plus de 16 personnes).
                     </p>
 
                     <a href="TARIFS groupes 2024.pdf" download class="btn btn-primary"
@@ -245,11 +242,39 @@
                     </a>
 
                     <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--gray);">
-                        Une question ou un devis sur-mesure ? Contactez-nous au <strong>03 21 86 01 62</strong> [cite:
-                        163] ou par email à <strong>canoekayakbeaurainville@orange.fr</strong>.
+                        Une question ou un devis sur-mesure ? Contactez-nous au <strong>03 21 86 01 62</strong> ou par email à <strong>canoekayakbeaurainville@orange.fr</strong>.
                     </p>
                 </div>
 
+            </div>
+        </section>
+
+        <section style="padding: 5rem 1.5rem; background-color: #f1f5f9;">
+            <div class="container" style="max-width: 1000px;">
+                <h2 class="section-title">SCOLAIRES</h2>
+                
+                <div style="background: var(--white); padding: 3rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left;">
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem; font-size: 1.1rem; color: var(--gray);">
+                        <p><strong style="color: var(--dark); font-size: 1.2rem;">Depuis plusieurs années, le club accueille des scolaires de façon ponctuelle ou plus étendue dans le temps.</strong></p>
+                        
+                        <p>Nous proposons différentes prestations pour vos sorties de fin d'année, journées d'intégration ou véritable cycle avec progression.</p>
+
+                        <p>Vous bénéficierez de l'expérience des cadres du club qui travaillent en collaboration avec les professeurs d'EPS du collège BELREM tout au long de l'année sur les sections sportives et les actions UNSS.</p>
+                        
+                        <p>Le club s'associe à l'Office Territorial des Sports et des Jeunes pour des animations combinant activités nautiques et terrestres.</p>
+                    </div>
+
+                    <div style="margin-top: 3rem; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 3rem;">
+                        <h3 style="font-size: 1.4rem; color: var(--dark); margin-bottom: 1.5rem;">Organiser votre sortie scolaire</h3>
+                        <p style="color: var(--gray); font-size: 0.95rem; margin-bottom: 1.5rem;">Téléchargez, remplissez et renvoyez-nous la convention ci-dessous par e-mail pour préparer votre venue.</p>
+                        
+                        <a href="convention-scolaire.pdf" download class="btn btn-outline" style="color: var(--primary); border-color: var(--primary); font-size: 1.1rem; padding: 1rem 2rem; display: inline-flex; align-items: center; gap: 0.5rem; background-color: white;">
+                            📄 Télécharger la Convention Scolaire (PDF)
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </section>
     </main>
