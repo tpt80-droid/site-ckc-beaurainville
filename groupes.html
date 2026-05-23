@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,19 +20,95 @@
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-family: var(--font-main); color: var(--dark); background-color: var(--light); line-height: 1.6; scroll-behavior: smooth; }
-        body { min-height: 100vh; display: flex; flex-direction: column; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        .navbar { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e2e8f0; }
-        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0.5rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .brand { display: flex; align-items: center; text-decoration: none; }
-        .brand-logo { height: 60px; width: auto; object-fit: contain; }
-        .nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; }
-        .nav-link { font-weight: 600; color: var(--dark); text-decoration: none; padding: 0.5rem 0.75rem; border-radius: 0.375rem; transition: var(--transition); }
-        .nav-link:hover, .nav-link.active { color: var(--primary); background-color: #eff6ff; }
-        .nav-btn { background-color: var(--secondary); color: var(--white); padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 700; text-decoration: none; transition: var(--transition); }
-        .nav-btn:hover { background-color: var(--secondary-hover); box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3); }
+        html {
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary);
+            background-color: #eff6ff;
+        }
+
+        .nav-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            background-color: var(--secondary-hover);
+            box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+        }
 
         .hero {
             /* Image de fond : j'ai utilisé la photo du groupe dans la rivière pour coller au thème */
@@ -42,31 +119,93 @@
             text-align: center;
         }
 
-        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; }
-        .hero p { font-size: 1.25rem; max-width: 700px; margin: 0 auto; }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.25rem; font-weight: 800; margin-bottom: 3rem; color: var(--dark); }
-        .section-title::after { content: ''; display: block; width: 80px; height: 5px; background-color: var(--secondary); margin: 0.75rem auto 0; border-radius: 3px; }
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
 
-        .btn { display: inline-block; padding: 0.875rem 2rem; border-radius: 0.5rem; font-weight: 700; text-decoration: none; transition: var(--transition); cursor: pointer; }
-        .btn-primary { background-color: var(--secondary); color: var(--white); }
-        .btn-primary:hover { background-color: var(--secondary-hover); transform: translateY(-2px); }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        footer { background-color: #0b1329; color: #64748b; padding: 2.5rem 1.5rem; text-align: center; font-size: 0.95rem; border-top: 1px solid #1e293b; margin-top: auto; }
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background-color: var(--secondary);
+            margin: 0.75rem auto 0;
+            border-radius: 3px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-hover);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #0b1329;
+            color: #64748b;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            border-top: 1px solid #1e293b;
+            margin-top: auto;
+        }
 
         @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 1.25rem; }
-            .nav-menu { flex-direction: column; width: 100%; gap: 0.75rem; }
+            .nav-container {
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="brand">
-                <img src="11de11_9b89bfc1b85f45a6814754eac23f5df9~mv2.jpg" alt="Logo CKC Beaurainville" class="brand-logo">
+                <img src="11de11_9b89bfc1b85f45a6814754eac23f5df9~mv2.jpg" alt="Logo CKC Beaurainville"
+                    class="brand-logo">
             </a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
@@ -79,28 +218,35 @@
     <main>
         <section class="hero">
             <h1>Accueil de Groupes & Scolaires</h1>
-            <p>Centres de loisirs, comités d'entreprise, séminaires ou groupes d'amis. Découvrez nos formules sur-mesure pour vivre des sensations uniques sur la Canche.</p>
+            <p>Centres de loisirs, comités d'entreprise, séminaires ou groupes d'amis. Découvrez nos formules sur-mesure
+                pour vivre des sensations uniques sur la Canche.</p>
         </section>
 
         <section style="padding: 5rem 1.5rem; background-color: var(--white); text-align: center;">
             <div class="container" style="max-width: 1000px;">
-                
-                <h2 class="section-title">Nos Activités & Formules</h2>
-                
-                <img src="Flyer activite de groupe.jpg" alt="Activités de Groupe CKC Beaurainville" style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 4rem;">
 
-                <div style="background-color: #f8fafc; border: 2px dashed #cbd5e1; padding: 4rem 2rem; border-radius: 1rem;">
-                    <h3 style="font-size: 1.75rem; color: var(--primary); margin-bottom: 1rem;">Grille Tarifaire Groupes 2024</h3>
-                    <p style="color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        Consultez tous nos tarifs dégressifs en fonction de la taille de votre groupe (- de 8 personnes, 8 à 16 personnes, ou plus de 16 personnes)[cite: 165].
+                <h2 class="section-title">Nos Activités & Formules</h2>
+
+                <img src="flyer-groupe.jpg" alt="Activités de Groupe CKC Beaurainville"
+                    style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 4rem;">
+                <div
+                    style="background-color: #f8fafc; border: 2px dashed #cbd5e1; padding: 4rem 2rem; border-radius: 1rem;">
+                    <h3 style="font-size: 1.75rem; color: var(--primary); margin-bottom: 1rem;">Grille Tarifaire Groupes
+                        2024</h3>
+                    <p
+                        style="color: var(--gray); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Consultez tous nos tarifs dégressifs en fonction de la taille de votre groupe (- de 8 personnes,
+                        8 à 16 personnes, ou plus de 16 personnes)[cite: 165].
                     </p>
-                    
-                    <a href="TARIFS groupes 2024.pdf" download class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem; box-shadow: 0 10px 20px rgba(20, 184, 166, 0.2);">
+
+                    <a href="TARIFS groupes 2024.pdf" download class="btn btn-primary"
+                        style="font-size: 1.2rem; padding: 1.2rem 2.5rem; box-shadow: 0 10px 20px rgba(20, 184, 166, 0.2);">
                         📥 Télécharger la plaquette Tarifs (PDF)
                     </a>
-                    
+
                     <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--gray);">
-                        Une question ou un devis sur-mesure ? Contactez-nous au <strong>03 21 86 01 62</strong> [cite: 163] ou par email à <strong>canoekayakbeaurainville@orange.fr</strong>.
+                        Une question ou un devis sur-mesure ? Contactez-nous au <strong>03 21 86 01 62</strong> [cite:
+                        163] ou par email à <strong>canoekayakbeaurainville@orange.fr</strong>.
                     </p>
                 </div>
 
@@ -115,4 +261,5 @@
     </footer>
 
 </body>
+
 </html>
