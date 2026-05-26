@@ -5,11 +5,11 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HMPFJ1V952"></script>
     <script>
-     window.dataLayer = window.dataLayer || [];
-     function gtag(){dataLayer.push(arguments);}
-     gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-     gtag('config', 'G-HMPFJ1V952');
+        gtag('config', 'G-HMPFJ1V952');
     </script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -531,6 +531,53 @@
                 <h2 style="text-align: center; color: var(--primary); margin-bottom: 30px;">📰 Les actus du Club</h2>
 
                 <div class="news-grid" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+
+                    <style>
+                        @keyframes pulseGlow {
+                            0% {
+                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                                border-color: transparent;
+                            }
+
+                            50% {
+                                /* Crée un halo lumineux avec la couleur turquoise du club */
+                                box-shadow: 0 0 15px rgba(20, 184, 166, 0.6);
+                                border-color: var(--secondary);
+                            }
+
+                            100% {
+                                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+                                border-color: transparent;
+                            }
+                        }
+
+                        .article-recrutement-flash {
+                            border: 2px solid transparent;
+                            /* L'animation dure 2 secondes et se répète à l'infini (infinite) */
+                            animation: pulseGlow 2s infinite ease-in-out;
+                        }
+                    </style>
+
+                    <article class="article-recrutement-flash"
+                        style="background: white; border-radius: 10px; padding: 20px; width: 300px; transition: all 0.3s ease;">
+                        <span style="font-size: 0.8rem; color: #64748b;">📅 26 Mai 2026</span>
+                        <h3 style="margin: 10px 0; color: var(--dark);">🔥 RECRUTEMENT ÉTÉ 2026 : MONITEUR CANOË-KAYAK
+                        </h3>
+                        <p style="font-size: 0.9rem; color: #475569;">
+                            <strong>Type de Contrat :</strong> Saisonnier (Juillet et Août 2026).<br><br>
+                            <strong>Missions :</strong><br>
+                            • Encadrement de groupes, scolaires et particuliers.<br>
+                            • Gestion logistique du matériel et des navettes.<br>
+                            • Assurer la sécurité sur la Canche.<br><br>
+                            <strong>Profil Recherché :</strong><br>
+                            • Dynamique, autonome et sérieux.<br>
+                            • Permis B obligatoire.<br>
+                            • Diplômes : CQP AMCK, BAFA ou équivalent.<br><br>
+                            <strong>Comment Postuler ? :</strong><br>
+                            Envoyez votre CV et lettre de motivation au club. Appelez-nous pour
+                            plus d'informations.
+                        </p>
+                    </article>
 
                     <article
                         style="background: white; border-radius: 10px; padding: 20px; width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
