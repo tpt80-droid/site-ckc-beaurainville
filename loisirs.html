@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HMPFJ1V952"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-HMPFJ1V952');
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations & Loisirs - CKC Beaurainville</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-hover: #1d4ed8;
+            --secondary: #14b8a6;
+            --secondary-hover: #0f766e;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray: #64748b;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: #eff6ff;
+        }
+
+        .nav-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        @keyframes pulse-spring {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            }
+
+            10% {
+                transform: scale(1.15);
+            }
+
+            20% {
+                transform: scale(0.95);
+            }
+
+            30% {
+                transform: scale(1.05);
+            }
+
+            40% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(20, 184, 166, 0.7);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            }
+        }
+
+        .bouncy-btn {
+            animation: pulse-spring 3s infinite cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+            color: var(--dark);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 5px;
+            background-color: var(--secondary);
+            margin: 0.75rem auto 0;
+            border-radius: 3px;
+        }
+
+        .flyer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .flyer-img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .flyer-img:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            background-color: #f1f5f9;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            z-index: 2;
+        }
+
+        .form-input {
+            padding: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            font-family: inherit;
+            background-color: #fff;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.2);
+        }
+
+        textarea.form-input {
+            resize: vertical;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-hover);
+        }
+
+        .info-section {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 1.5rem 5rem 1.5rem;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+        }
+
+        .info-block h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .info-block p {
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .info-block a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .info-block a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* ========================================= */
+        /* SECTION DOCUMENTS A TELECHARGER           */
+        /* ========================================= */
+        .docs-section {
+            padding: 4rem 1.5rem 2rem 1.5rem;
+            background-color: var(--white);
+            text-align: center;
+        }
+
+        .docs-title {
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 2.5rem;
+            font-weight: 800;
+        }
+
+        .docs-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-doc {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1.5rem;
+            border: 1.5px solid var(--primary);
+            border-radius: 0.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            text-decoration: none;
+            background-color: var(--white);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        /* L'icône de document gris clair */
+        .btn-doc svg {
+            width: 20px;
+            height: 20px;
+            fill: #cbd5e1;
+            transition: var(--transition);
+        }
+
+        /* Effet au survol */
+        .btn-doc:hover {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+        }
+
+        .btn-doc:hover svg {
+            fill: var(--white);
+        }
+
+        .docs-disclaimer {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        footer {
+            background-color: #0b1329;
+            color: #64748b;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+                justify-content: center;
+            }
+
+            .flyer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="nav-container">
+            <a href="index.html" class="brand"><img src="11de11_9b89bfc1b85f45a6814754eac23f5df9~mv2.jpg"
+                    alt="Logo CKC Beaurainville" class="brand-logo"></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="loisirs.html" class="nav-link">Locations & Loisirs</a></li>
+                <li><a href="club.html" class="nav-link">Le Club Sportif</a></li>
+                <li><a href="groupes.html" class="nav-link" style="color: var(--primary); font-weight: 800;">Espace
+                        Groupes</a></li>
+                <li><a href="#reservation" class="nav-btn bouncy-btn">Réserver en ligne</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div style="background-color: var(--primary); color: white; padding: 4rem 1.5rem; text-align: center;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">Locations & Réservations</h1>
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Retrouvez nos tarifs, parcours et réservez
+                directement votre descente de la Canche.</p>
+        </div>
+
+        <section id="flyers" style="padding: 6rem 1.5rem; background-color: var(--white);">
+            <div class="container">
+                <h2 class="section-title">Tarifs & Carte des Parcours</h2>
+                <div class="flyer-grid">
+                    <img src="flyer-recto.jpg" alt="Tarifs Location" class="flyer-img" loading="lazy">
+                    <img src="flyer-verso.jpg" alt="Carte des parcours" class="flyer-img" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section id="galerie" style="padding: 6rem 0; background-color: #f1f5f9;">
+            <div class="container">
+                <h2 class="section-title">En images</h2>
+                <div class="gallery-grid">
+                    <img src="672491311_1357506486407624_3678687887606075289_n.jpg" class="gallery-item" loading="lazy">
+                    <img src="img-9238-ronald-piclin-.jpg" class="gallery-item" loading="lazy">
+                    <img src="canoe-a-beaurainville-ot7v-a-recadrer.jpg" class="gallery-item" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="docs-section">
+            <div class="container">
+                <h2 class="docs-title">Documents Utiles à Télécharger</h2>
+
+                <div class="docs-grid">
+
+                    <a href="Conditions générales de ventes.pdf" download class="btn-doc">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                        </svg>
+                        Conditions Générales de Vente
+                    </a>
+
+                    <a href="réglement_générale_de_location.pdf" download class="btn-doc">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                        </svg>
+                        Règlement de Location
+                    </a>
+
+                    <a href="INFO_ADHERENTS_FFCK_2024 Licence temporaire (3).pdf" download class="btn-doc">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                        </svg>
+                        Notice Assurance FFCK
+                    </a>
+
+                </div>
+
+                <p class="docs-disclaimer">
+                    * En réservant une embarcation, vous acceptez tacitement notre règlement de location et nos
+                    conditions générales.
+                </p>
+            </div>
+        </section>
+
+        <section id="reservation" style="padding: 6rem 1.5rem; background-color: #e0f2fe;">
+            <div class="container"
+                style="max-width: 800px; margin: 0 auto; background: var(--white); padding: 3rem; border-radius: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <h2 class="section-title" style="margin-bottom: 2rem;">RÉSERVATION DE LOCATION</h2>
+                <p style="text-align: center; margin-bottom: 2rem; color: var(--gray);">Veuillez remplir ce formulaire
+                    pour soumettre votre demande.</p>
+                <form id="resa-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <input type="text" name="nom_prenom" class="form-input" placeholder="Nom et Prénom du responsable *"
+                        required>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <input type="email" name="email" class="form-input" placeholder="Adresse email *" required>
+                        <input type="tel" name="telephone" class="form-input" placeholder="Numéro de téléphone *"
+                            required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <input type="text" id="date_resa" name="date_resa" class="form-input"
+                            placeholder="Date souhaitée *" required style="cursor: pointer;">
+                        <select name="heure_resa" class="form-input" required>
+                            <option value="">Heure de départ souhaitée *</option>
+                        </select>
+                    </div>
+                    <select name="parcours" class="form-input" required>
+                        <option value="">Quel parcours vous souhaitez ? *</option>
+                        <option value="Guisy">Parcours Guisy de 9 km</option>
+                    </select>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <input type="number" name="total_personnes" min="1" class="form-input"
+                            placeholder="Nombre total de personnes *" required>
+                        <input type="number" name="nombre_enfants" min="0" class="form-input"
+                            placeholder="Nombre d'enfants (Entre 8 et 12 ans)">
+                    </div>
+                    <textarea name="commentaires" class="form-input"
+                        placeholder="Besoins ou commentaires additionnels ?" rows="3"></textarea>
+                    <button type="submit" class="btn btn-primary" id="btn-submit"
+                        style="margin-top: 1rem; width: 100%; border: none; padding: 1.2rem; font-size: 1.1rem; font-weight: 800;">Soumettre
+                        la demande</button>
+                    <div id="msg-succes"
+                        style="display: none; background: #d1fae5; color: #065f46; padding: 1rem; border-radius: 0.5rem; text-align: center; font-weight: bold; margin-top: 1rem;">
+                        Demande envoyée !</div>
+                </form>
+            </div>
+        </section>
+
+        <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzkMWiibAR__eWg93_it_yy-bt9a1QTTTqWGjaUsQaRcdC5Bfi_7gXz1YaqUgRfZSkp7w/exec';
+            const dateInput = document.getElementById('date_resa');
+            const timeSelect = document.querySelector('select[name="heure_resa"]');
+            const nbPersonnesInput = document.querySelector('input[name="total_personnes"]');
+            const msgSucces = document.getElementById('msg-succes');
+            const form = document.getElementById('resa-form');
+            const btnSubmit = document.getElementById('btn-submit');
+            let disposParDate = {};
+
+            let fp = flatpickr(dateInput, { locale: "fr", dateFormat: "d/m/Y", disable: [function (date) { return true; }] });
+
+            fetch(scriptURL).then(response => response.json()).then(data => {
+                if (data.erreur) return;
+                disposParDate = data.disposParDate || {};
+                const datesDispo = data.datesDispo || [];
+                timeSelect.innerHTML = '<option value="">Heure de départ souhaitée *</option>';
+                fp.destroy();
+                fp = flatpickr(dateInput, {
+                    locale: "fr", dateFormat: "d/m/Y", enable: datesDispo,
+                    onChange: function (selectedDates, dateStr, instance) {
+                        timeSelect.innerHTML = '<option value="">Heure de départ souhaitée *</option>';
+                        if (disposParDate[dateStr]) {
+                            disposParDate[dateStr].forEach(creneau => {
+                                let option = document.createElement('option');
+                                option.value = creneau.heure;
+                                option.textContent = creneau.heure + " (" + creneau.places + " places restantes)";
+                                option.dataset.places = creneau.places;
+                                timeSelect.appendChild(option);
+                            });
+                        }
+                    }
+                });
+            }).catch(err => console.error("Erreur", err));
+
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                let selectedOption = timeSelect.options[timeSelect.selectedIndex];
+                let placesRestantes = parseInt(selectedOption.dataset.places);
+                let personnesDemandees = parseInt(nbPersonnesInput.value);
+
+                if (personnesDemandees > placesRestantes) {
+                    alert("⚠️ IMPOSSIBLE : Vous demandez " + personnesDemandees + " places, mais il n'en reste que " + placesRestantes + ".");
+                    return;
+                }
+                btnSubmit.textContent = "Envoi en cours..."; btnSubmit.disabled = true;
+
+                fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                    .then(response => {
+                        msgSucces.style.display = "block";
+                        btnSubmit.textContent = "SOUMETTRE LA DEMANDE"; btnSubmit.disabled = false;
+                        form.reset();
+                        setTimeout(() => { msgSucces.style.display = "none"; window.location.reload(); }, 4000);
+                    }).catch(error => { btnSubmit.textContent = "Erreur - Réessayer"; btnSubmit.disabled = false; });
+            });
+        </script>
+
+        <section class="info-section">
+            <div class="container info-grid">
+                <div class="info-block">
+                    <h3>📍 Notre Base Nautique</h3>
+                    <p>Canoë-kayak Beaurainville</p>
+                    <p>106 Rue de la passerelle</p>
+                    <p>62990 BEAURAINVILLE</p>
+                </div>
+                <div class="info-block">
+                    <h3>🕒 Période d'Ouverture</h3>
+                    <p>Saison Estivale (Mai - Juin - Juillet - Août - Septembre) :</p>
+                    <p>Du Lundi au Dimanche — 9h00 à 17h00</p>
+                    <p>Réservation en ligne conseillée.</p>
+                </div>
+                <div class="info-block">
+                    <h3>📞 Nous Contacter</h3>
+                    <p>Téléphone Fixe : <a href="tel:+33321860162">03.21.86.01.62</a></p>
+                    <p>Téléphone Mobile : <a href="tel:+33750642948">07.50.64.29.48</a></p>
+                    <p>Email : <a href="mailto:canoekayakbeaurainville@orange.fr"
+                            style="word-break: break-all;">canoekayakbeaurainville@orange.fr</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Canoë Kayak Club de Beaurainville. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

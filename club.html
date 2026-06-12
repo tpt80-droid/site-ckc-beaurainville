@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HMPFJ1V952"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-HMPFJ1V952');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Club Sportif - CKC Beaurainville</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-hover: #1d4ed8;
+            --secondary: #14b8a6;
+            --secondary-hover: #0f766e;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gray: #64748b;
+            --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-main);
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.5rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            height: 60px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            background-color: #eff6ff;
+        }
+
+        .nav-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        @keyframes pulse-spring {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            }
+
+            10% {
+                transform: scale(1.15);
+            }
+
+            20% {
+                transform: scale(0.95);
+            }
+
+            30% {
+                transform: scale(1.05);
+            }
+
+            40% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(20, 184, 166, 0.7);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(20, 184, 166, 0.3);
+            }
+        }
+
+        .bouncy-btn {
+            animation: pulse-spring 3s infinite cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: inline-block;
+            transform-origin: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-section {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 1.5rem 5rem 1.5rem;
+            border-top: 4px solid var(--secondary);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+        }
+
+        .info-block h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 1rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .info-block p {
+            font-size: 1.05rem;
+            color: #e2e8f0;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
+        }
+
+        .info-block a {
+            color: #e2e8f0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .info-block a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        /* ========================================= */
+        /* GALERIE DU CLUB SPORTIF                   */
+        /* ========================================= */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 1.5rem;
+        }
+
+        .gallery-card {
+            background-color: var(--white);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(15, 23, 42, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .gallery-item {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .gallery-caption {
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .gallery-caption h4 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+            font-weight: 800;
+        }
+
+        .gallery-caption p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        footer {
+            background-color: #0b1329;
+            color: #64748b;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid #1e293b;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1.25rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="nav-container">
+            <a href="index.html" class="brand"><img src="11de11_9b89bfc1b85f45a6814754eac23f5df9~mv2.jpg"
+                    alt="Logo CKC Beaurainville" class="brand-logo"></a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Accueil</a></li>
+                <li><a href="loisirs.html" class="nav-link">Locations & Loisirs</a></li>
+                <li><a href="club.html" class="nav-link">Le Club Sportif</a></li>
+                <li><a href="groupes.html" class="nav-link" style="color: var(--primary); font-weight: 800;">Espace
+                        Groupes</a></li>
+                <li><a href="loisirs.html#reservation" class="nav-btn bouncy-btn">Réserver en ligne</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section style="padding: 6rem 1.5rem; background-color: var(--white);">
+            <div class="container" style="max-width: 1000px; margin: 0 auto;">
+                <h1 style="text-align: center; color: var(--primary); font-size: 2.5rem; margin-bottom: 3rem;">Pôle
+                    Compétition Slalom & École de Pagaie</h1>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 3rem;">
+                    <div
+                        style="background: var(--light); padding: 2rem; border-radius: 1rem; border-left: 5px solid var(--secondary);">
+                        <h3 style="color: var(--dark); margin-bottom: 1rem;">🏆 Calendrier Slalom</h3>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>
+                                <strong>11 Juillet 2026 :</strong> Déplacement prévu sur le bassin de
+                                Bourg-Saint-Maurice (Coupe de France de Nationale 1 ).
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--light); padding: 2rem; border-radius: 1rem; border-left: 5px solid var(--primary);">
+                        <h3 style="color: var(--dark); margin-bottom: 1rem;">💪 Entraînements</h3>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Créneaux d'entraînement adaptés à tous les niveaux pour performer en eau vive.</p>
+                        <ul style="color: var(--dark); font-weight: 500; line-height: 2; list-style: none; padding: 0;">
+                            <li>• Samedi : 9h00 - 12h00 (Confirmés)</li>
+                            <li>• Samedi : 13h30 - 16h00 (Jeunes)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galerie-club" style="padding: 2rem 0 6rem 0; background-color: var(--white);">
+            <div class="container">
+                <h2
+                    style="text-align: center; color: var(--dark); font-size: 2.25rem; font-weight: 800; margin-bottom: 3rem;">
+                    Au cœur de l'action
+                </h2>
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-card">
+                        <img src="Club team.jpg" alt="L'équipe du CKC Beaurainville" class="gallery-item"
+                            loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>Notre Équipe</h4>
+                            <p>Un groupe soudé et passionné</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <img src="456254225_1051101620355072_2442015857277460918_n.jpg"
+                            alt="Kayakiste en pleine compétition slalom" class="gallery-item" loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>Haute Performance</h4>
+                            <p>Exigence et technique en eau vive</p>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <img src="Club bassin.jpg" alt="Le bassin de slalom avec les portes" class="gallery-item"
+                            loading="lazy">
+                        <div class="gallery-caption">
+                            <h4>Notre Bassin</h4>
+                            <p>Un terrain de jeu exceptionnel</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container info-grid">
+                <div class="info-block">
+                    <h3>📍 Notre Base Nautique</h3>
+                    <p>Canoë-kayak Beaurainville</p>
+                    <p>106 Rue de la passerelle</p>
+                    <p>62990 BEAURAINVILLE</p>
+                </div>
+                <div class="info-block">
+                    <h3>🕒 Période d'Ouverture</h3>
+                    <p>Saison Estivale (Mai - Juin - Juillet - Août - Septembre) :</p>
+                    <p>Du Lundi au Dimanche — 9h00 à 17h00</p>
+                    <p>Réservation en ligne conseillée.</p>
+                </div>
+                <div class="info-block">
+                    <h3>📞 Nous Contacter</h3>
+                    <p>Téléphone Fixe : <a href="tel:+33321860162">03.21.86.01.62</a></p>
+                    <p>Téléphone Mobile : <a href="tel:+33750642948">07.50.64.29.48</a></p>
+                    <p>Email : <a href="mailto:canoekayakbeaurainville@orange.fr"
+                            style="word-break: break-all;">canoekayakbeaurainville@orange.fr</a></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Canoë Kayak Club de Beaurainville. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
