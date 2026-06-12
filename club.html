@@ -330,7 +330,7 @@
                 <div class="gallery-grid">
 
                     <div class="gallery-card">
-                        <img src="Club team.jpg" alt="L'équipe du CKC Beaurainville" class="gallery-item"
+                        <img src="Club-team.jpg" alt="L'équipe du CKC Beaurainville" class="gallery-item"
                             loading="lazy">
                         <div class="gallery-caption">
                             <h4>Notre Équipe</h4>
@@ -348,7 +348,7 @@
                     </div>
 
                     <div class="gallery-card">
-                        <img src="Club bassin.jpg" alt="Le bassin de slalom avec les portes" class="gallery-item"
+                        <img src="Club-bassin.jpg" alt="Le bassin de slalom avec les portes" class="gallery-item"
                             loading="lazy">
                         <div class="gallery-caption">
                             <h4>Notre Bassin</h4>
@@ -398,14 +398,14 @@
             // L'URL de la fédé (avec les filtres N2 et Slalom)
             const ffckUrl = `https://app.ffck.org/web/calendrier/ajax_calendrier_load.php?type_evenement=COMPOFF%2CCOMPOPEN&saison=${currentYear}&activite%5B%5D=SLA&niveau%5B%5D=2`;
 
-            // Proxy AllOrigins pour contourner le blocage du navigateur
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(ffckUrl)}`;
+            // Nouveau Proxy direct, ultra stable sur GitHub Pages
+            const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(ffckUrl)}`;
 
+            // On récupère directement le texte brut
             fetch(proxyUrl)
-                .then(response => response.json())
-                .then(proxyData => {
+                .then(response => response.text())
+                .then(rawData => {
                     const calendarContainer = document.getElementById('ffck-calendar');
-                    const rawData = proxyData.contents;
 
                     if (!rawData) {
                         calendarContainer.innerHTML = '<li style="color: #ef4444;">Aucune donnée reçue.</li>';
@@ -414,7 +414,6 @@
 
                     let eventsArray = [];
 
-                    // Extraction des données brutes
                     try {
                         let jsonData = JSON.parse(rawData);
                         eventsArray = jsonData.data || jsonData.aaData || jsonData;
@@ -432,7 +431,6 @@
                     const today = new Date();
                     today.setHours(0, 0, 0, 0);
 
-                    // Fonction pour nettoyer le code HTML de la FFCK (balises, espaces en trop...)
                     function stripHtml(html) {
                         if (!html) return "";
                         let tmp = document.createElement("DIV");
@@ -440,56 +438,45 @@
                         return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, ' ').trim();
                     }
 
-                    // On trie intelligemment les cellules
                     const upcomingEvents = eventsArray
                         .map(e => {
                             let rawDateStr = "";
                             let name = "Compétition FFCK";
                             let place = "Lieu à définir";
-                            let level = "N2";
 
                             if (Array.isArray(e)) {
-                                // 1. On nettoie tout et on supprime les cases vides
                                 let cleanCells = e.map(stripHtml).filter(c => c !== "");
 
-                                // 2. On isole UNIQUEMENT les dates (ex: 11/07/2026)
                                 let dates = cleanCells.filter(c => c.match(/\d{2}\/\d{2}\/\d{4}/));
                                 if (dates.length > 0) {
                                     rawDateStr = dates[0].match(/\d{2}\/\d{2}\/\d{4}/)[0];
                                 }
 
-                                // 3. On isole le reste (les vrais textes)
                                 let texts = cleanCells.filter(c => !c.match(/\d{2}\/\d{2}\/\d{4}/));
 
                                 if (texts.length > 0) {
-                                    name = texts[0]; // Ex: "BOURG ST MAURICE"
-                                    place = texts[0]; // On le met aussi en lieu par défaut
+                                    name = texts[0];
+                                    place = texts[0];
                                 }
                                 if (texts.length > 1) {
-                                    // On cherche s'il y a un mot qui définit le niveau
                                     let lvlMatch = texts.find(t => t.match(/N1|N2|N3|National|Régional|Inter/i));
-                                    if (lvlMatch) level = lvlMatch;
-
-                                    // S'il y a un autre texte, c'est le bassin / lieu
                                     let otherTexts = texts.filter(t => t !== name && t !== lvlMatch);
                                     if (otherTexts.length > 0) place = otherTexts[0];
                                 }
                             }
 
-                            // On convertit la date trouvée pour pouvoir la classer chronologiquement
                             let parsedDate = new Date(0);
                             let match = rawDateStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
                             if (match) {
                                 parsedDate = new Date(`${match[3]}-${match[2]}-${match[1]}`);
                             }
 
-                            return { parsedDate, name, place, level };
+                            return { parsedDate, name, place };
                         })
-                        .filter(e => e.parsedDate >= today) // On élimine le passé
-                        .sort((a, b) => a.parsedDate - b.parsedDate) // On trie du plus proche au plus lointain
-                        .slice(0, 5); // On n'en garde que 5
+                        .filter(e => e.parsedDate >= today)
+                        .sort((a, b) => a.parsedDate - b.parsedDate)
+                        .slice(0, 5);
 
-                    // On affiche !
                     if (upcomingEvents.length === 0) {
                         calendarContainer.innerHTML = '<li style="color: var(--gray);">Aucune course N2 à venir prochainement.</li>';
                         return;
@@ -497,7 +484,6 @@
 
                     calendarContainer.innerHTML = '';
 
-                    // 4. On génère l'affichage HTML épuré (sans le niveau)
                     upcomingEvents.forEach(e => {
                         const dateStr = e.parsedDate.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long' });
 
