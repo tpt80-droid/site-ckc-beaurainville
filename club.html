@@ -392,128 +392,117 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // ⚠️ REMPLACE CETTE URL PAR CELLE DE TON GOOGLE APPS SCRIPT ⚠️
+            const proxyUrl = "https://script.google.com/macros/s/AKfycbzzT0P0j2YbTNvT2Y2ZGF3xc5Lu0WS6X5nxO4gWmfNVhPTCqQoQrjFH4Ywk5fuvB-U/exec";
+
             const calendarContainer = document.getElementById('ffck-calendar');
-            const currentYear = new Date().getFullYear();
-            
-            // L'URL de la fédé
-            const ffckUrl = `https://app.ffck.org/web/calendrier/ajax_calendrier_load.php?type_evenement=COMPOFF%2CCOMPOPEN&saison=${currentYear}&activite%5B%5D=SLA&niveau%5B%5D=2`; 
-            
-            // L'arsenal de proxys : si l'un échoue ou est bloqué (Adblock), le script prend le suivant
-            const proxies = [
-                `https://api.allorigins.win/raw?url=${encodeURIComponent(ffckUrl)}`,
-                `https://corsproxy.io/?${encodeURIComponent(ffckUrl)}`,
-                `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(ffckUrl)}`
-            ];
 
-            let rawData = null;
+            fetch(proxyUrl)
+                .then(response => response.text())
+                .then(rawData => {
 
-            // Boucle de test des proxys
-            for (let proxy of proxies) {
-                try {
-                    const response = await fetch(proxy);
-                    if (response.ok) {
-                        rawData = await response.text();
-                        break; // Succès ! On sort de la boucle
-                    }
-                } catch (err) {
-                    console.warn("Proxy bloqué, passage au suivant...");
-                }
-            }
-
-            // Si vraiment aucun proxy n'a fonctionné
-            if (!rawData) {
-                calendarContainer.innerHTML = '<li style="color: #ef4444; font-size: 0.9rem;">Impossible de charger le calendrier (Bloqué par le navigateur).</li>';
-                return;
-            }
-
-            let eventsArray = [];
-
-            try {
-                let jsonData = JSON.parse(rawData);
-                eventsArray = jsonData.data || jsonData.aaData || jsonData;
-            } catch(err) {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(rawData, "text/html");
-                const rows = doc.querySelectorAll("tr"); 
-                
-                eventsArray = Array.from(rows).map(row => {
-                    const cells = row.querySelectorAll("td, th");
-                    return Array.from(cells).map(cell => cell.innerHTML);
-                });
-            }
-
-            const today = new Date();
-            today.setHours(0, 0, 0, 0); 
-
-            function stripHtml(html) {
-                if (!html) return "";
-                let tmp = document.createElement("DIV");
-                tmp.innerHTML = String(html);
-                return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, ' ').trim();
-            }
-
-            const upcomingEvents = eventsArray
-                .map(e => {
-                    let rawDateStr = "";
-                    let name = "Compétition FFCK";
-                    let place = "Lieu à définir";
-
-                    if (Array.isArray(e)) {
-                        let cleanCells = e.map(stripHtml).filter(c => c !== "");
-                        
-                        let dates = cleanCells.filter(c => c.match(/\d{2}\/\d{2}\/\d{4}/));
-                        if (dates.length > 0) {
-                            rawDateStr = dates[0].match(/\d{2}\/\d{2}\/\d{4}/)[0]; 
-                        }
-                        
-                        let texts = cleanCells.filter(c => !c.match(/\d{2}\/\d{2}\/\d{4}/));
-                        
-                        if (texts.length > 0) {
-                            name = texts[0]; 
-                            place = texts[0]; 
-                        }
-                        if (texts.length > 1) {
-                            let lvlMatch = texts.find(t => t.match(/N1|N2|N3|National|Régional|Inter/i));
-                            let otherTexts = texts.filter(t => t !== name && t !== lvlMatch);
-                            if (otherTexts.length > 0) place = otherTexts[0];
-                        }
+                    if (!rawData || rawData.includes("Erreur du proxy")) {
+                        calendarContainer.innerHTML = '<li style="color: #ef4444;">Aucune donnée reçue.</li>';
+                        return;
                     }
 
-                    let parsedDate = new Date(0);
-                    let match = rawDateStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
-                    if(match) {
-                        parsedDate = new Date(`${match[3]}-${match[2]}-${match[1]}`);
+                    let eventsArray = [];
+
+                    // Extraction du code HTML/JSON de la FFCK
+                    try {
+                        let jsonData = JSON.parse(rawData);
+                        eventsArray = jsonData.data || jsonData.aaData || jsonData;
+                    } catch (err) {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(rawData, "text/html");
+                        const rows = doc.querySelectorAll("tr");
+
+                        eventsArray = Array.from(rows).map(row => {
+                            const cells = row.querySelectorAll("td, th");
+                            return Array.from(cells).map(cell => cell.innerHTML);
+                        });
                     }
 
-                    return { parsedDate, name, place };
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    function stripHtml(html) {
+                        if (!html) return "";
+                        let tmp = document.createElement("DIV");
+                        tmp.innerHTML = String(html);
+                        return (tmp.textContent || tmp.innerText || "").replace(/\s+/g, ' ').trim();
+                    }
+
+                    // Tri et nettoyage des données
+                    const upcomingEvents = eventsArray
+                        .map(e => {
+                            let rawDateStr = "";
+                            let name = "Compétition FFCK";
+                            let place = "Lieu à définir";
+
+                            if (Array.isArray(e)) {
+                                let cleanCells = e.map(stripHtml).filter(c => c !== "");
+
+                                let dates = cleanCells.filter(c => c.match(/\d{2}\/\d{2}\/\d{4}/));
+                                if (dates.length > 0) {
+                                    rawDateStr = dates[0].match(/\d{2}\/\d{2}\/\d{4}/)[0];
+                                }
+
+                                let texts = cleanCells.filter(c => !c.match(/\d{2}\/\d{2}\/\d{4}/));
+
+                                if (texts.length > 0) {
+                                    name = texts[0];
+                                    place = texts[0];
+                                }
+                                if (texts.length > 1) {
+                                    let lvlMatch = texts.find(t => t.match(/N1|N2|N3|National|Régional|Inter/i));
+                                    let otherTexts = texts.filter(t => t !== name && t !== lvlMatch);
+                                    if (otherTexts.length > 0) place = otherTexts[0];
+                                }
+                            }
+
+                            let parsedDate = new Date(0);
+                            let match = rawDateStr.match(/(\d{2})\/(\d{2})\/(\d{4})/);
+                            if (match) {
+                                parsedDate = new Date(`${match[3]}-${match[2]}-${match[1]}`);
+                            }
+
+                            return { parsedDate, name, place };
+                        })
+                        .filter(e => e.parsedDate >= today)
+                        .sort((a, b) => a.parsedDate - b.parsedDate)
+                        .slice(0, 5);
+
+                    if (upcomingEvents.length === 0) {
+                        calendarContainer.innerHTML = '<li style="color: var(--gray);">Aucune course N2 à venir prochainement.</li>';
+                        return;
+                    }
+
+                    calendarContainer.innerHTML = '';
+
+                    // Affichage final
+                    upcomingEvents.forEach(e => {
+                        const dateStr = e.parsedDate.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long' });
+
+                        const li = document.createElement('li');
+                        li.style.marginBottom = '1.25rem';
+                        li.style.borderBottom = '1px solid #e2e8f0';
+                        li.style.paddingBottom = '0.75rem';
+
+                        li.innerHTML = `
+                            <strong style="color: var(--secondary); font-size: 0.9rem; text-transform: uppercase;">${dateStr}</strong><br>
+                            <span style="font-weight: 700; color: var(--dark); font-size: 1.15rem; display: block; margin-top: 0.2rem; text-transform: uppercase;">${e.place}</span>
+                            <span style="color: var(--gray); font-size: 0.9rem; display: block; margin-top: 0.1rem;">🏆 ${e.name}</span>
+                        `;
+                        calendarContainer.appendChild(li);
+                    });
                 })
-                .filter(e => e.parsedDate >= today)
-                .sort((a, b) => a.parsedDate - b.parsedDate)
-                .slice(0, 5);
-
-            if (upcomingEvents.length === 0) {
-                calendarContainer.innerHTML = '<li style="color: var(--gray);">Aucune course N2 à venir prochainement.</li>';
-                return;
-            }
-
-            calendarContainer.innerHTML = ''; 
-            
-            upcomingEvents.forEach(e => {
-                const dateStr = e.parsedDate.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long' });
-                
-                const li = document.createElement('li');
-                li.style.marginBottom = '1.25rem';
-                li.style.borderBottom = '1px solid #e2e8f0';
-                li.style.paddingBottom = '0.75rem';
-                
-                li.innerHTML = `
-                    <strong style="color: var(--secondary); font-size: 0.9rem; text-transform: uppercase;">${dateStr}</strong><br>
-                    <span style="font-weight: 700; color: var(--dark); font-size: 1.15rem; display: block; margin-top: 0.2rem; text-transform: uppercase;">${e.place}</span>
-                    <span style="color: var(--gray); font-size: 0.9rem; display: block; margin-top: 0.1rem;">🏆 ${e.name}</span>
-                `;
-                calendarContainer.appendChild(li);
-            });
+                .catch(error => {
+                    console.error("Erreur de récupération :", error);
+                    document.getElementById('ffck-calendar').innerHTML = '<li style="color: #ef4444; font-size: 0.9rem;">Impossible de charger le calendrier.</li>';
+                });
         });
     </script>
 
