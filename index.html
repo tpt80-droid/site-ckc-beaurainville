@@ -503,6 +503,19 @@
             </div>
         </section>
 
+        <section style="padding: 4rem 1.5rem; background-color: #f8fafc;">
+            <div class="container" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="text-align: center; color: #1e3a8a; font-size: 2rem; font-weight: 800; margin-bottom: 2rem;">
+                    🔥 À la une du Club
+                </h2>
+
+                <div id="derniere-actu-accueil" style="text-align: center; color: #64748b;">
+                    Recherche de la dernière actualité...
+                </div>
+
+            </div>
+        </section>
+
         <section class="live-info" style="padding: 4rem 1.5rem; background-color: #f1f5f9;">
             <div class="container" style="max-width: 1200px; margin: 0 auto;">
                 <h2
@@ -580,6 +593,45 @@
             <p>&copy; 2026 Canoë Kayak Club de Beaurainville. Tous droits réservés.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const conteneurAccueil = document.getElementById('derniere-actu-accueil');
+
+            // On va chercher le fichier club.html en arrière-plan
+            fetch('club.html')
+                .then(response => response.text())
+                .then(html => {
+                    // On transforme le texte en vrai code compréhensible par le navigateur
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+
+                    // On cherche la toute première "carte" d'article
+                    const dernierArticle = doc.querySelector('.article-card');
+
+                    if (dernierArticle) {
+                        // On modifie le bouton pour rediriger vers la page club
+                        const bouton = dernierArticle.querySelector('button');
+                        if (bouton) {
+                            bouton.removeAttribute('onclick'); // On enlève l'ouverture de la fenêtre
+                            bouton.onclick = () => { window.location.href = 'club.html'; }; // On redirige
+                            bouton.innerText = "Lire l'article sur la page Club ➔";
+                        }
+
+                        // On efface le texte de chargement et on colle la carte
+                        conteneurAccueil.innerHTML = '';
+                        conteneurAccueil.appendChild(dernierArticle);
+                    } else {
+                        conteneurAccueil.innerHTML = '<p>Aucune compétition récente à afficher.</p>';
+                    }
+                })
+                .catch(erreur => {
+                    console.error("Erreur lors du chargement de l'actualité :", erreur);
+                    conteneurAccueil.innerHTML = '<p>Impossible de charger les actualités.</p>';
+                });
+        });
+    </script>
+
 </body>
 
 </html>
