@@ -612,6 +612,12 @@
             const contenu = element.nextElementSibling.innerHTML;
             document.getElementById('modal-contenu').innerHTML = contenu;
             document.getElementById('modal-article').style.display = 'block';
+            
+            // 🎯 LE SNIPER ANALYTICS : On récupère le titre et on l'envoie à Google
+            const titreArticle = btn.parentElement.querySelector('h3').innerText;
+            gtag('event', 'ouverture_article', {
+                'titre_lu': titreArticle
+            });
         }
         function fermerArticle() {
             document.getElementById('modal-article').style.display = 'none';
