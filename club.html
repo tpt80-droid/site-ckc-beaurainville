@@ -259,7 +259,233 @@
                 justify-content: center;
             }
         }
+
+        /* --- STYLE DU CARROUSEL DE TAO PETIT --- */
+        .carousel-container {
+            max-width: 800px;
+            /* Largeur max de la galerie */
+            margin: 0 auto 3rem auto;
+            /* Centré, marge en bas */
+            position: relative;
+            overflow: hidden;
+            /* Cache les images qui dépassent */
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e2e8f0;
+            background: #000;
+            /* Fond noir pour les bordures d'images */
+        }
+
+        .carousel-slide {
+            display: flex;
+            /* Aligne les images horizontalement */
+            transition: transform 0.5s ease-in-out;
+            /* Effet de glissement lisse */
+            width: 100%;
+            height: 500px;
+            /* Hauteur fixe de la galerie */
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Adapte l'image sans la déformer, recadre si besoin */
+            flex-shrink: 0;
+            /* Empêche les images de rétrécir */
+            display: block;
+        }
+
+        /* Boutons Précédent/Suivant */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.4);
+            color: #333;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 50%;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .prev {
+            left: 15px;
+        }
+
+        .next {
+            right: 15px;
+        }
+
+        /* Indicateurs (points) en bas */
+        .carousel-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #fff;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Titre et description de la galerie */
+        .carousel-caption {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .carousel-caption h3 {
+            color: var(--primary);
+            margin: 0 0 0.25rem 0;
+            font-weight: 800;
+        }
+
+        .carousel-caption p {
+            color: var(--gray);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Adaptation mobile */
+        @media (max-width: 768px) {
+            .carousel-slide {
+                height: 350px;
+            }
+
+            /* Hauteur réduite sur mobile */
+            .carousel-btn {
+                padding: 10px 15px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* --- Pellicule dynamique pour les cartes athlètes --- */
+        .athlete-photo-frame {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background-color: #cbd5e1;
+        }
+
+        .athlete-slider {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .athlete-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Petites flèches discrètes au survol (optionnel) */
+        .athlete-photo-frame:hover .slider-nav {
+            opacity: 1;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .slider-nav span {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 5px 10px;
+            font-size: 1rem;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        /* --- Pellicule dynamique pour les athlètes --- */
+        .athlete-photo-frame {
+            width: 100%;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            /* Coupe tout ce qui dépasse du cadre */
+            background-color: #cbd5e1;
+        }
+
+        .athlete-slider {
+            display: flex;
+            /* Aligne les 9 photos en une seule ligne horizontale */
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            /* L'effet de glisse fluide */
+        }
+
+        .athlete-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+            /* Empêche les images de s'écraser les unes sur les autres */
+        }
+
+        /* Fait apparaître les petites flèches quand la souris passe sur la photo */
+        .athlete-photo-frame:hover .slider-nav {
+            opacity: 1;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .slider-nav span {
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            padding: 5px 10px;
+            font-size: 1rem;
+            pointer-events: auto;
+            cursor: pointer;
+        }
     </style>
+
 </head>
 
 <body>
@@ -273,7 +499,12 @@
                 <li><a href="club.html" class="nav-link" style="color: var(--primary); font-weight: 800;">Le Club
                         Sportif</a></li>
                 <li><a href="groupes.html" class="nav-link">Espace Groupes</a></li>
-                <li><a href="loisirs.html#reservation" class="nav-btn bouncy-btn" onclick="gtag('event', 'clic_reservation', { 'emplacement': 'menu_haut' });">Réserver en ligne</a></li>
+                <li><a href="index.html#sponsoring"
+                        style="color: #d9534f; font-weight: 800; text-decoration: none; padding: 0.5rem 0.75rem; transition: 0.3s;">Devenir
+                        Sponsor</a></li>
+                <li><a href="loisirs.html#reservation" class="nav-btn bouncy-btn"
+                        onclick="gtag('event', 'clic_reservation', { 'emplacement': 'menu_haut' });">Réserver en
+                        ligne</a></li>
             </ul>
         </div>
     </nav>
@@ -321,218 +552,477 @@
                     Derniers Résultats & Actualités
                 </h2>
 
-                    
-    <div class="article-card" style="background:#fff; padding:20px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-        <h3 style="margin-top:0;">Épinal 2026 : Le C.K.C. Beaurainvillois brille sur les eaux vosgiennes !</h3>
-        <p style="color:#666;">Cliquez pour lire l'article complet.</p>
-        <button onclick="ouvrirArticle(this)" style="background:#1e3a8a; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Lire l'article</button>
-        <div class="full-content" style="display:none;"><article style="max-width: 800px; margin: 0 auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #2d3748; line-height: 1.6; padding: 20px; background-color: #f7fafc;">
 
-  <!-- En-tête de l'article -->
-  <header style="text-align: center; margin-bottom: 3rem; border-bottom: 4px solid #3182ce; padding-bottom: 1.5rem;">
-    <p style="text-transform: uppercase; font-weight: bold; color: #3182ce; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Coupe de France National 1 de Slalom</p>
-    <h1 style="color: #1a365d; font-size: 2.5rem; margin: 0; font-weight: 800; line-height: 1.2;">Épinal 2026 : Le C.K.C. Beaurainvillois brille sur les eaux vosgiennes !</h1>
-    <p style="font-style: italic; color: #718096; margin-top: 0.5rem;">Publié le 24 mai 2026 par le Responsable Communication</p>
-  </header>
+                <div class="article-card"
+                    style="background:#fff; padding:20px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                    <h3 style="margin-top:0;">Épinal 2026 : Le C.K.C. Beaurainvillois brille sur les eaux vosgiennes !
+                    </h3>
+                    <p style="color:#666;">Cliquez pour lire l'article complet.</p>
+                    <button onclick="ouvrirArticle(this)"
+                        style="background:#1e3a8a; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Lire
+                        l'article</button>
+                    <div class="full-content" style="display:none;">
+                        <article
+                            style="max-width: 800px; margin: 0 auto; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #2d3748; line-height: 1.6; padding: 20px; background-color: #f7fafc;">
 
-  <!-- Introduction -->
-  <section style="margin-bottom: 2.5rem;">
-    <p style="font-size: 1.15rem; color: #4a5568;">
-      Quel week-end extraordinaire pour nos couleurs ! Du 23 au 25 mai 2026, l'élite du canoë-kayak français s'est donné rendez-vous à <strong>Épinal</strong> pour une manche cruciale de la <strong>Coupe de France National 1 de Slalom</strong>. Sur un bassin réputé pour sa haute technicité, ses mouvements d'eau piégeux et son exigence physique, les athlètes du <strong>C.K.C. Beaurainvillois</strong> ont porté haut et fort nos valeurs. Entre démonstrations de force, victoires éclatantes et combativité exemplaire, retour sur les exploits de nos héros !
-    </p>
-  </section>
+                            <!-- En-tête de l'article -->
+                            <header
+                                style="text-align: center; margin-bottom: 3rem; border-bottom: 4px solid #3182ce; padding-bottom: 1.5rem;">
+                                <p
+                                    style="text-transform: uppercase; font-weight: bold; color: #3182ce; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                                    Coupe de France National 1 de Slalom</p>
+                                <h1
+                                    style="color: #1a365d; font-size: 2.5rem; margin: 0; font-weight: 800; line-height: 1.2;">
+                                    Épinal 2026 : Le C.K.C. Beaurainvillois brille sur les eaux vosgiennes !</h1>
+                                <p style="font-style: italic; color: #718096; margin-top: 0.5rem;">Publié le 24 mai 2026
+                                    par le Responsable Communication</p>
+                            </header>
 
-  <!-- Les Victoires éclatantes -->
-  <section style="margin-bottom: 3rem; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-left: 6px solid #ecc94b;">
-    <h2 style="color: #b7791f; font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center;">
-      <span style="margin-right: 10px;">🏆</span> Des victoires magistrales en Phase Finale B !
-    </h2>
-    
-    <!-- Tao Petit -->
-    <div style="margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem;">
-      <h3 style="color: #1a365d; margin-top: 0; margin-bottom: 0.5rem;">Tao PETIT : Le roi du Kayak Homme (K1H)</h3>
-      <p style="margin: 0.5rem 0;">
-        Quelle manche d'anthologie ! Dans la Phase Finale B, <strong>Tao Petit</strong> a tout simplement écrasé la concurrence. Avec un tracé d'une fluidité parfaite et une concentration de tous les instants, il réalise le run idéal : 
-        <strong>chrono de 1:20.03</strong> et surtout un superbe <strong>sans-faute (0 pénalité)</strong> pour un temps total de <strong>80,03 secondes</strong>. Il s'empare de la 1ère place du classement avec autorité. Une démonstration qui prouve qu'il a toute sa place parmi les très grands de la discipline !
-      </p>
-    </div>
+                            <!-- Introduction -->
+                            <section style="margin-bottom: 2.5rem;">
+                                <p style="font-size: 1.15rem; color: #4a5568;">
+                                    Quel week-end extraordinaire pour nos couleurs ! Du 23 au 25 mai 2026, l'élite du
+                                    canoë-kayak français s'est donné rendez-vous à <strong>Épinal</strong> pour une
+                                    manche cruciale de la <strong>Coupe de France National 1 de Slalom</strong>. Sur un
+                                    bassin réputé pour sa haute technicité, ses mouvements d'eau piégeux et son exigence
+                                    physique, les athlètes du <strong>C.K.C. Beaurainvillois</strong> ont porté haut et
+                                    fort nos valeurs. Entre démonstrations de force, victoires éclatantes et combativité
+                                    exemplaire, retour sur les exploits de nos héros !
+                                </p>
+                            </section>
 
-    <!-- Yvan Leblond -->
-    <div style="margin-bottom: 0;">
-      <h3 style="color: #1a365d; margin-top: 0; margin-bottom: 0.5rem;">Yvan LEBLOND : Magistral en Canoë Monoplace (C1H)</h3>
-      <p style="margin: 0.5rem 0;">
-        Le doublé pour Beaurainville ! En canoë monoplace homme, <strong>Yvan Leblond</strong> a lui aussi survolé les débats de la Phase Finale B. Domptant les mouvements d'eau avec une précision chirurgicale, Yvan signe le meilleur temps de sa finale en <strong>1:32.51</strong>, sans toucher la moindre porte (<strong>0 pénalité</strong>), pour un temps final de <strong>92,51 secondes</strong>. Cette victoire est le fruit d'un travail acharné et d'un mental d'acier !
-      </p>
-    </div>
-  </section>
+                            <!-- Les Victoires éclatantes -->
+                            <section
+                                style="margin-bottom: 3rem; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-left: 6px solid #ecc94b;">
+                                <h2
+                                    style="color: #b7791f; font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem; display: flex; align-items: center;">
+                                    <span style="margin-right: 10px;">🏆</span> Des victoires magistrales en Phase
+                                    Finale B !
+                                </h2>
 
-  <!-- Top 10 National pour Callie Leroy -->
-  <section style="margin-bottom: 3rem; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-left: 6px solid #3182ce;">
-    <h2 style="color: #2b6cb0; font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem;">
-      ✨ L'élite nationale à portée de pagaie pour Callie Leroy
-    </h2>
-    <p>
-      Engagée dans la prestigieuse <strong>Phase Finale A en Canoë Monoplace Dame (C1D)</strong>, notre talentueuse <strong>Callie Leroy</strong> s'est frottée aux meilleures céistes de l'Hexagone. Face à une concurrence féroce, Callie s'est sublimée pour aller chercher une magnifique <strong>9ème place nationale</strong> ! 
-    </p>
-    <p style="background-color: #ebf8ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #4299e1; margin: 1rem 0;">
-      <strong>Sa fiche technique (C1D - Finale A) :</strong><br>
-      Chrono : <strong>2:05.92</strong> | Pénalités : <strong>4</strong> | Temps final : <strong>129,92 secondes</strong> (à seulement 29.64 du podium !)
-    </p>
-    <p>
-      Entrer ainsi dans le Top 10 sur un bassin aussi exigeant qu'Épinal démontre l'étendue de sa palette technique et sa progression constante au plus haut niveau. Une immense fierté pour notre club !
-    </p>
-  </section>
+                                <!-- Tao Petit -->
+                                <div
+                                    style="margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem;">
+                                    <h3 style="color: #1a365d; margin-top: 0; margin-bottom: 0.5rem;">Tao PETIT : Le roi
+                                        du Kayak Homme (K1H)</h3>
+                                    <p style="margin: 0.5rem 0;">
+                                        Quelle manche d'anthologie ! Dans la Phase Finale B, <strong>Tao Petit</strong>
+                                        a tout simplement écrasé la concurrence. Avec un tracé d'une fluidité parfaite
+                                        et une concentration de tous les instants, il réalise le run idéal :
+                                        <strong>chrono de 1:20.03</strong> et surtout un superbe <strong>sans-faute (0
+                                            pénalité)</strong> pour un temps total de <strong>80,03 secondes</strong>.
+                                        Il s'empare de la 1ère place du classement avec autorité. Une démonstration qui
+                                        prouve qu'il a toute sa place parmi les très grands de la discipline !
+                                    </p>
+                                </div>
 
-  <!-- Courages, persévérance et technicité -->
-  <section style="margin-bottom: 3rem; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-left: 6px solid #e53e3e;">
-    <h2 style="color: #c53030; font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem;">
-      💪 Courage et abnégation face à la difficulté du bassin
-    </h2>
-    <p>
-      Le slalom est une discipline de précision extrême où le moindre centimètre d'écart se paie cash. Notre équipe de Kayak Dames en a fait l'expérience en Phase Finale B, mais leur combativité a été exemplaire.
-    </p>
-    
-    <ul style="list-style-type: none; padding-left: 0;">
-      <li style="margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 3px solid #cbd5e0;">
-        <strong>Emma POUILLY (K1D)</strong> réalise une course pleine de promesses. Elle termine à la <strong>20ème place</strong> avec un chrono de <strong>1:59.08</strong> et seulement <strong>6 pénalités</strong>, pour un temps total de <strong>125,08 secondes</strong>. Une belle régularité qui annonce de très belles choses pour la suite !
-      </li>
-      <li style="margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 3px solid #cbd5e0;">
-        <strong>Callie LEROY (K1D)</strong>, également alignée en kayak, a connu une manche plus difficile techniquement sur ce tracé particulièrement sélectif. Malgré un excellent rythme de navigation (chrono de <strong>1:59.93</strong>), le bassin spinalien s'est montré impitoyable avec <strong>52 pénalités</strong>, la classant à la <strong>28ème place</strong> en <strong>171,93 secondes</strong>. 
-      </li>
-    </ul>
-    
-    <p style="font-style: italic; background-color: #fffaf0; padding: 1rem; border-radius: 8px; border: 1px solid #fbd38d;">
-      <strong>Le mot du coach :</strong> "Épinal ne pardonne rien. Les touches peuvent s'enchaîner très vite quand on tente de chercher les trajectoires optimales. Mais c'est précisément dans cette adversité que l'on grandit. Bravo à Emma et Callie pour n'avoir jamais relâché l'effort jusqu'à la ligne d'arrivée !"
-    </p>
-  </section>
+                                <!-- Yvan Leblond -->
+                                <div style="margin-bottom: 0;">
+                                    <h3 style="color: #1a365d; margin-top: 0; margin-bottom: 0.5rem;">Yvan LEBLOND :
+                                        Magistral en Canoë Monoplace (C1H)</h3>
+                                    <p style="margin: 0.5rem 0;">
+                                        Le doublé pour Beaurainville ! En canoë monoplace homme, <strong>Yvan
+                                            Leblond</strong> a lui aussi survolé les débats de la Phase Finale B.
+                                        Domptant les mouvements d'eau avec une précision chirurgicale, Yvan signe le
+                                        meilleur temps de sa finale en <strong>1:32.51</strong>, sans toucher la moindre
+                                        porte (<strong>0 pénalité</strong>), pour un temps final de <strong>92,51
+                                            secondes</strong>. Cette victoire est le fruit d'un travail acharné et d'un
+                                        mental d'acier !
+                                    </p>
+                                </div>
+                            </section>
 
-  <!-- Conclusion -->
-  <footer style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 2px solid #e2e8f0;">
-    <h3 style="color: #1a365d; font-size: 1.5rem; margin-bottom: 1rem;">Beaurainville, terre de champions !</h3>
-    <p style="font-size: 1.1rem; color: #4a5568; max-width: 600px; margin: 0 auto 1.5rem;">
-      Un immense merci à nos athlètes, aux entraîneurs et aux supporters qui ont fait le déplacement. Ce week-end vosgien confirme la dynamique exceptionnelle de notre club. Continuez de nous faire vibrer, nous sommes tous derrière vous !
-    </p>
-    <p style="font-weight: bold; color: #3182ce; font-size: 1.2rem;">Allez le C.K.C. Beaurainvillois ! 🔵🟡</p>
-  </footer>
+                            <!-- Top 10 National pour Callie Leroy -->
+                            <section
+                                style="margin-bottom: 3rem; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-left: 6px solid #3182ce;">
+                                <h2 style="color: #2b6cb0; font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem;">
+                                    ✨ L'élite nationale à portée de pagaie pour Callie Leroy
+                                </h2>
+                                <p>
+                                    Engagée dans la prestigieuse <strong>Phase Finale A en Canoë Monoplace Dame
+                                        (C1D)</strong>, notre talentueuse <strong>Callie Leroy</strong> s'est frottée
+                                    aux meilleures céistes de l'Hexagone. Face à une concurrence féroce, Callie s'est
+                                    sublimée pour aller chercher une magnifique <strong>9ème place nationale</strong> !
+                                </p>
+                                <p
+                                    style="background-color: #ebf8ff; padding: 1rem; border-radius: 8px; border-left: 4px solid #4299e1; margin: 1rem 0;">
+                                    <strong>Sa fiche technique (C1D - Finale A) :</strong><br>
+                                    Chrono : <strong>2:05.92</strong> | Pénalités : <strong>4</strong> | Temps final :
+                                    <strong>129,92 secondes</strong> (à seulement 29.64 du podium !)
+                                </p>
+                                <p>
+                                    Entrer ainsi dans le Top 10 sur un bassin aussi exigeant qu'Épinal démontre
+                                    l'étendue de sa palette technique et sa progression constante au plus haut niveau.
+                                    Une immense fierté pour notre club !
+                                </p>
+                            </section>
 
-</article></div>
-    </div>
+                            <!-- Courages, persévérance et technicité -->
+                            <section
+                                style="margin-bottom: 3rem; background-color: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border-left: 6px solid #e53e3e;">
+                                <h2 style="color: #c53030; font-size: 1.8rem; margin-top: 0; margin-bottom: 1.5rem;">
+                                    💪 Courage et abnégation face à la difficulté du bassin
+                                </h2>
+                                <p>
+                                    Le slalom est une discipline de précision extrême où le moindre centimètre d'écart
+                                    se paie cash. Notre équipe de Kayak Dames en a fait l'expérience en Phase Finale B,
+                                    mais leur combativité a été exemplaire.
+                                </p>
 
-                    
-    <div class="article-card" style="background:#fff; padding:20px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
-        <h3 style="margin-top:0;">Exploit historique et fierté nationale pour le C.K.C. Beaurainvillois à Yenne !</h3>
-        <p style="color:#666;">Cliquez pour lire l'article complet.</p>
-        <button onclick="ouvrirArticle(this)" style="background:#1e3a8a; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Lire l'article</button>
-        <div class="full-content" style="display:none;"><article style="font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; color: #1e293b; background-color: #ffffff; line-height: 1.6;">
+                                <ul style="list-style-type: none; padding-left: 0;">
+                                    <li
+                                        style="margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 3px solid #cbd5e0;">
+                                        <strong>Emma POUILLY (K1D)</strong> réalise une course pleine de promesses. Elle
+                                        termine à la <strong>20ème place</strong> avec un chrono de
+                                        <strong>1:59.08</strong> et seulement <strong>6 pénalités</strong>, pour un
+                                        temps total de <strong>125,08 secondes</strong>. Une belle régularité qui
+                                        annonce de très belles choses pour la suite !
+                                    </li>
+                                    <li
+                                        style="margin-bottom: 1.5rem; padding-left: 1.5rem; border-left: 3px solid #cbd5e0;">
+                                        <strong>Callie LEROY (K1D)</strong>, également alignée en kayak, a connu une
+                                        manche plus difficile techniquement sur ce tracé particulièrement sélectif.
+                                        Malgré un excellent rythme de navigation (chrono de <strong>1:59.93</strong>),
+                                        le bassin spinalien s'est montré impitoyable avec <strong>52 pénalités</strong>,
+                                        la classant à la <strong>28ème place</strong> en <strong>171,93
+                                            secondes</strong>.
+                                    </li>
+                                </ul>
 
-  <header style="text-align: center; margin-bottom: 3rem; border-bottom: 4px solid #0284c7; padding-bottom: 2rem;">
-    <p style="text-transform: uppercase; font-weight: 700; color: #0284c7; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Canoë Kayak Club de Beaurainville</p>
-    <h1 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; line-height: 1.2; margin: 0 0 1rem 0;">
-      Exploit historique et fierté nationale pour le C.K.C. Beaurainvillois à Yenne !
-    </h1>
-    <p style="font-size: 1.125rem; color: #64748b; margin: 0;">
-      Retour sur la Finale de la Coupe de France National 3 (Yenne, 30 et 31 mai 2026)
-    </p>
-  </header>
+                                <p
+                                    style="font-style: italic; background-color: #fffaf0; padding: 1rem; border-radius: 8px; border: 1px solid #fbd38d;">
+                                    <strong>Le mot du coach :</strong> "Épinal ne pardonne rien. Les touches peuvent
+                                    s'enchaîner très vite quand on tente de chercher les trajectoires optimales. Mais
+                                    c'est précisément dans cette adversité que l'on grandit. Bravo à Emma et Callie pour
+                                    n'avoir jamais relâché l'effort jusqu'à la ligne d'arrivée !"
+                                </p>
+                            </section>
 
-  <section style="margin-bottom: 2.5rem;">
-    <p style="font-size: 1.15rem; font-style: italic; color: #475569; margin-bottom: 1.5rem;">
-      Quel week-end mémorable pour nos couleurs ! Venus en force en Savoie, sur le magnifique mais redoutable bassin de <strong>Yenne</strong>, les athlètes du <strong>C.K.C. Beaurainvillois</strong> ont porté haut et fort les couleurs de notre club lors de la tant attendue <strong>Finale de la Coupe de France National 3</strong>. Face aux meilleurs équipages du pays et sur un parcours particulièrement technique et exigeant, nos licenciés ont fait preuve de bravoure, de technicité et d'un esprit d'équipe tout simplement exceptionnel.
-    </p>
-  </section>
+                            <!-- Conclusion -->
+                            <footer
+                                style="text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 2px solid #e2e8f0;">
+                                <h3 style="color: #1a365d; font-size: 1.5rem; margin-bottom: 1rem;">Beaurainville, terre
+                                    de champions !</h3>
+                                <p style="font-size: 1.1rem; color: #4a5568; max-width: 600px; margin: 0 auto 1.5rem;">
+                                    Un immense merci à nos athlètes, aux entraîneurs et aux supporters qui ont fait le
+                                    déplacement. Ce week-end vosgien confirme la dynamique exceptionnelle de notre club.
+                                    Continuez de nous faire vibrer, nous sommes tous derrière vous !
+                                </p>
+                                <p style="font-weight: bold; color: #3182ce; font-size: 1.2rem;">Allez le C.K.C.
+                                    Beaurainvillois ! 🔵🟡</p>
+                            </footer>
 
-  <!-- Athlète 1 : Emma Pouilly -->
-  <section style="background-color: #f0f9ff; border-left: 5px solid #0284c7; padding: 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0;">
-    <h2 style="font-size: 1.5rem; color: #0369a1; margin-top: 0; margin-bottom: 1rem;">
-      Emma Pouilly : Le coup d'éclat et un Top 10 national d'anthologie !
-    </h2>
-    <p style="margin-bottom: 1rem;">
-      Notre championne a tout simplement éclaboussé la compétition de sa classe en Canoë Monoplace Dame (C1D). Dès la première manche de qualification, <strong>Emma Pouilly</strong> frappe un grand coup en s'emparant de la <strong>1ère place</strong> avec un chrono stratosphérique de 1:59.65 (6 secondes de pénalité, pour un temps total de 125,65), s'offrant un billet direct pour les phases finales !
-    </p>
-    <p style="margin-bottom: 0;">
-      En finale, sur un tracé encore plus sélectif, Emma arrache une magnifique <strong>10ème place nationale</strong> avec un chrono de 3:03.54 et 54 secondes de pénalité (total : 237,54). Une performance majuscule qui prouve sa place parmi l'élite nationale !
-    </p>
-  </section>
-
-  <!-- Athlète 2 : Achille Françoise -->
-  <section style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
-    <h2 style="font-size: 1.5rem; color: #0f172a; margin-top: 0; margin-bottom: 1rem;">
-      Achille Françoise : Le guerrier polyvalent
-    </h2>
-    <p style="margin-bottom: 1rem;">
-      Véritable force de la nature, <strong>Achille Françoise</strong> s'est aligné sur deux disciplines majeures avec une hargne exemplaire. En Canoë Monoplace Homme (C1H), il réalise deux manches de qualification d'une propreté chirurgicale avec <strong>zéro pénalité</strong> :
-    </p>
-    <ul style="list-style-type: square; padding-left: 1.5rem; margin-bottom: 1rem;">
-      <li><strong>Manche 1 :</strong> 34ème place (Chrono et temps de 1:49.13).</li>
-      <li><strong>Manche 2 :</strong> Splendide 14ème place (Chrono et temps de 1:43.96).</li>
-    </ul>
-    <p style="margin-bottom: 0;">
-      En Kayak Homme (K1H), Achille a de nouveau brillé. Après une 23ème place lors de la Manche 1 qualificative (Chrono : 1:28.57, 4 pénalités, temps total de 92,57), il accède à la grande finale nationale où il décroche la <strong>22ème place</strong> avec un chrono de 1:35.85 et seulement 2 secondes de pénalité (total : 97,85). Chapeau, Achille !
-    </p>
-  </section>
-
-  <!-- Athlète 3 : Raphaël Fournier -->
-  <section style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
-    <h2 style="font-size: 1.5rem; color: #0f172a; margin-top: 0; margin-bottom: 1rem;">
-      Raphaël Fournier : L'engagement à l'état pur
-    </h2>
-    <p style="margin-bottom: 1rem;">
-      Tout comme son coéquipier, <strong>Raphaël Fournier</strong> a multiplié les efforts sur ce tracé exigeant de Yenne. En Canoë Monoplace Homme (C1H), il se classe 56ème de la Manche 1 (Chrono : 2:01.86, 2 pénalités, total : 123,86) avant de progresser en Manche 2 avec une 42ème place (Chrono : 2:01.86, 6 pénalités, total : 127,86).
-    </p>
-    <p style="margin-bottom: 0;">
-      En Kayak Homme (K1H), il n'a rien lâché, décrochant la 80ème place en Manche 1 (Chrono : 1:50.24, 8 pénalités, total : 118,24) et une prometteuse 59ème place en Manche 2 (Chrono : 1:50.64, 6 pénalités, total : 116,64). Une régularité et une abnégation qui forcent le respect !
-    </p>
-  </section>
-
-  <!-- Athlète 4 : Jules Lecoeur -->
-  <section style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
-    <h2 style="font-size: 1.5rem; color: #0f172a; margin-top: 0; margin-bottom: 1rem;">
-      Jules Lecoeur : La force tranquille
-    </h2>
-    <p style="margin-bottom: 0;">
-      Engagé dans la catégorie ultra-compétitive du Kayak Homme (K1H), <strong>Jules Lecoeur</strong> a réalisé de solides performances. En Manche 1, il prend une belle 46ème place grâce à un passage maîtrisé (Chrono : 1:32.88, 4 pénalités, total : 96,88). Il confirme son aisance lors de la Manche 2 en s'adjugeant la 57ème place avec un chrono de 1:40.53 et seulement 2 petites pénalités (temps total : 102,53). Une prestation très encourageante pour l'avenir !
-    </p>
-  </section>
-
-  <!-- Athlètes 5 & 6 : Nos courageuses kayakistes -->
-  <section style="background-color: #fffbeb; border-left: 5px solid #f59e0b; padding: 1.5rem; margin-bottom: 2.5rem; border-radius: 0 8px 8px 0;">
-    <h2 style="font-size: 1.5rem; color: #b45309; margin-top: 0; margin-bottom: 1rem;">
-      Camille Foulon & Leona Bronet : Le courage face à la fureur des eaux
-    </h2>
-    <p style="margin-bottom: 1rem;">
-      La technicité du bassin de Yenne n'a épargné personne, et notre duo féminin en Kayak Dame (K1D) a dû batailler avec force contre les éléments et les pénalités. Mais quelle résilience !
-    </p>
-    <p style="margin-bottom: 1rem;">
-      <strong>Camille Foulon</strong> a signé une progression tout simplement époustouflante. Après une Manche 1 difficile marquée par 114 secondes de pénalité (47ème place, temps total de 253,65), elle a su ajuster sa trajectoire de manière magistrale lors de la Manche 2 pour signer une superbe <strong>21ème place</strong>, en abaissant ses pénalités à seulement 10 secondes (Chrono : 2:20.49, total : 150,49) ! Une preuve indéniable de sa capacité d'adaptation.
-    </p>
-    <p style="margin-bottom: 0;">
-      <strong>Leona Bronet</strong> a elle aussi démontré un mental d'acier. Malgré les pièges du tracé qui lui ont coûté de lourdes pénalités, elle s'accroche pour décrocher la 39ème place en Manche 1 (Chrono : 1:46.10, 104 pénalités, total : 210,10) et la 35ème place en Manche 2 (Chrono : 2:15.18, 152 pénalités, total : 287,18). L'apprentissage passe par ces moments difficiles, et son courage face à un bassin aussi sélectif est une immense fierté pour notre club !
-    </p>
-  </section>
-
-  <footer style="background-color: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 12px; text-align: center;">
-    <h3 style="font-size: 1.5rem; color: #38bdf8; margin-top: 0; margin-bottom: 1rem;">Le C.K.C. Beaurainvillois plus fort que jamais !</h3>
-    <p style="margin-bottom: 0; font-size: 1.05rem;">
-      Ces résultats d'envergure nationale prouvent une nouvelle fois la vitalité, le talent et la force mentale de nos athlètes. Que ce soit sur les podiums ou dans le combat face aux pénalités, chaque membre de l'équipe a donné le meilleur de lui-même. Un immense bravo à tous nos compétiteurs, aux entraîneurs et aux supporters qui font battre le cœur de Beaurainville ! L'avenir nous appartient !
-    </p>
-  </footer>
-
-</article></div>
-    </div>
-
-                    Les prochains exploits de nos athlètes apparaîtront ici...
-                    </p>
-
+                        </article>
+                    </div>
                 </div>
+
+
+                <div class="article-card"
+                    style="background:#fff; padding:20px; margin-bottom:20px; border-radius:10px; border:1px solid #ddd; box-shadow:0 2px 5px rgba(0,0,0,0.1);">
+                    <h3 style="margin-top:0;">Exploit historique et fierté nationale pour le C.K.C. Beaurainvillois à
+                        Yenne !</h3>
+                    <p style="color:#666;">Cliquez pour lire l'article complet.</p>
+                    <button onclick="ouvrirArticle(this)"
+                        style="background:#1e3a8a; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Lire
+                        l'article</button>
+                    <div class="full-content" style="display:none;">
+                        <article
+                            style="font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem 1.5rem; color: #1e293b; background-color: #ffffff; line-height: 1.6;">
+
+                            <header
+                                style="text-align: center; margin-bottom: 3rem; border-bottom: 4px solid #0284c7; padding-bottom: 2rem;">
+                                <p
+                                    style="text-transform: uppercase; font-weight: 700; color: #0284c7; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                                    Canoë Kayak Club de Beaurainville</p>
+                                <h1
+                                    style="font-size: 2.25rem; font-weight: 800; color: #0f172a; line-height: 1.2; margin: 0 0 1rem 0;">
+                                    Exploit historique et fierté nationale pour le C.K.C. Beaurainvillois à Yenne !
+                                </h1>
+                                <p style="font-size: 1.125rem; color: #64748b; margin: 0;">
+                                    Retour sur la Finale de la Coupe de France National 3 (Yenne, 30 et 31 mai 2026)
+                                </p>
+                            </header>
+
+                            <section style="margin-bottom: 2.5rem;">
+                                <p
+                                    style="font-size: 1.15rem; font-style: italic; color: #475569; margin-bottom: 1.5rem;">
+                                    Quel week-end mémorable pour nos couleurs ! Venus en force en Savoie, sur le
+                                    magnifique mais redoutable bassin de <strong>Yenne</strong>, les athlètes du
+                                    <strong>C.K.C. Beaurainvillois</strong> ont porté haut et fort les couleurs de notre
+                                    club lors de la tant attendue <strong>Finale de la Coupe de France National
+                                        3</strong>. Face aux meilleurs équipages du pays et sur un parcours
+                                    particulièrement technique et exigeant, nos licenciés ont fait preuve de bravoure,
+                                    de technicité et d'un esprit d'équipe tout simplement exceptionnel.
+                                </p>
+                            </section>
+
+                            <!-- Athlète 1 : Emma Pouilly -->
+                            <section
+                                style="background-color: #f0f9ff; border-left: 5px solid #0284c7; padding: 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0;">
+                                <h2 style="font-size: 1.5rem; color: #0369a1; margin-top: 0; margin-bottom: 1rem;">
+                                    Emma Pouilly : Le coup d'éclat et un Top 10 national d'anthologie !
+                                </h2>
+                                <p style="margin-bottom: 1rem;">
+                                    Notre championne a tout simplement éclaboussé la compétition de sa classe en Canoë
+                                    Monoplace Dame (C1D). Dès la première manche de qualification, <strong>Emma
+                                        Pouilly</strong> frappe un grand coup en s'emparant de la <strong>1ère
+                                        place</strong> avec un chrono stratosphérique de 1:59.65 (6 secondes de
+                                    pénalité, pour un temps total de 125,65), s'offrant un billet direct pour les phases
+                                    finales !
+                                </p>
+                                <p style="margin-bottom: 0;">
+                                    En finale, sur un tracé encore plus sélectif, Emma arrache une magnifique
+                                    <strong>10ème place nationale</strong> avec un chrono de 3:03.54 et 54 secondes de
+                                    pénalité (total : 237,54). Une performance majuscule qui prouve sa place parmi
+                                    l'élite nationale !
+                                </p>
+                            </section>
+
+                            <!-- Athlète 2 : Achille Françoise -->
+                            <section
+                                style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
+                                <h2 style="font-size: 1.5rem; color: #0f172a; margin-top: 0; margin-bottom: 1rem;">
+                                    Achille Françoise : Le guerrier polyvalent
+                                </h2>
+                                <p style="margin-bottom: 1rem;">
+                                    Véritable force de la nature, <strong>Achille Françoise</strong> s'est aligné sur
+                                    deux disciplines majeures avec une hargne exemplaire. En Canoë Monoplace Homme
+                                    (C1H), il réalise deux manches de qualification d'une propreté chirurgicale avec
+                                    <strong>zéro pénalité</strong> :
+                                </p>
+                                <ul style="list-style-type: square; padding-left: 1.5rem; margin-bottom: 1rem;">
+                                    <li><strong>Manche 1 :</strong> 34ème place (Chrono et temps de 1:49.13).</li>
+                                    <li><strong>Manche 2 :</strong> Splendide 14ème place (Chrono et temps de 1:43.96).
+                                    </li>
+                                </ul>
+                                <p style="margin-bottom: 0;">
+                                    En Kayak Homme (K1H), Achille a de nouveau brillé. Après une 23ème place lors de la
+                                    Manche 1 qualificative (Chrono : 1:28.57, 4 pénalités, temps total de 92,57), il
+                                    accède à la grande finale nationale où il décroche la <strong>22ème place</strong>
+                                    avec un chrono de 1:35.85 et seulement 2 secondes de pénalité (total : 97,85).
+                                    Chapeau, Achille !
+                                </p>
+                            </section>
+
+                            <!-- Athlète 3 : Raphaël Fournier -->
+                            <section
+                                style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
+                                <h2 style="font-size: 1.5rem; color: #0f172a; margin-top: 0; margin-bottom: 1rem;">
+                                    Raphaël Fournier : L'engagement à l'état pur
+                                </h2>
+                                <p style="margin-bottom: 1rem;">
+                                    Tout comme son coéquipier, <strong>Raphaël Fournier</strong> a multiplié les efforts
+                                    sur ce tracé exigeant de Yenne. En Canoë Monoplace Homme (C1H), il se classe 56ème
+                                    de la Manche 1 (Chrono : 2:01.86, 2 pénalités, total : 123,86) avant de progresser
+                                    en Manche 2 avec une 42ème place (Chrono : 2:01.86, 6 pénalités, total : 127,86).
+                                </p>
+                                <p style="margin-bottom: 0;">
+                                    En Kayak Homme (K1H), il n'a rien lâché, décrochant la 80ème place en Manche 1
+                                    (Chrono : 1:50.24, 8 pénalités, total : 118,24) et une prometteuse 59ème place en
+                                    Manche 2 (Chrono : 1:50.64, 6 pénalités, total : 116,64). Une régularité et une
+                                    abnégation qui forcent le respect !
+                                </p>
+                            </section>
+
+                            <!-- Athlète 4 : Jules Lecoeur -->
+                            <section
+                                style="background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 2rem; border-radius: 8px;">
+                                <h2 style="font-size: 1.5rem; color: #0f172a; margin-top: 0; margin-bottom: 1rem;">
+                                    Jules Lecoeur : La force tranquille
+                                </h2>
+                                <p style="margin-bottom: 0;">
+                                    Engagé dans la catégorie ultra-compétitive du Kayak Homme (K1H), <strong>Jules
+                                        Lecoeur</strong> a réalisé de solides performances. En Manche 1, il prend une
+                                    belle 46ème place grâce à un passage maîtrisé (Chrono : 1:32.88, 4 pénalités, total
+                                    : 96,88). Il confirme son aisance lors de la Manche 2 en s'adjugeant la 57ème place
+                                    avec un chrono de 1:40.53 et seulement 2 petites pénalités (temps total : 102,53).
+                                    Une prestation très encourageante pour l'avenir !
+                                </p>
+                            </section>
+
+                            <!-- Athlètes 5 & 6 : Nos courageuses kayakistes -->
+                            <section
+                                style="background-color: #fffbeb; border-left: 5px solid #f59e0b; padding: 1.5rem; margin-bottom: 2.5rem; border-radius: 0 8px 8px 0;">
+                                <h2 style="font-size: 1.5rem; color: #b45309; margin-top: 0; margin-bottom: 1rem;">
+                                    Camille Foulon & Leona Bronet : Le courage face à la fureur des eaux
+                                </h2>
+                                <p style="margin-bottom: 1rem;">
+                                    La technicité du bassin de Yenne n'a épargné personne, et notre duo féminin en Kayak
+                                    Dame (K1D) a dû batailler avec force contre les éléments et les pénalités. Mais
+                                    quelle résilience !
+                                </p>
+                                <p style="margin-bottom: 1rem;">
+                                    <strong>Camille Foulon</strong> a signé une progression tout simplement
+                                    époustouflante. Après une Manche 1 difficile marquée par 114 secondes de pénalité
+                                    (47ème place, temps total de 253,65), elle a su ajuster sa trajectoire de manière
+                                    magistrale lors de la Manche 2 pour signer une superbe <strong>21ème place</strong>,
+                                    en abaissant ses pénalités à seulement 10 secondes (Chrono : 2:20.49, total :
+                                    150,49) ! Une preuve indéniable de sa capacité d'adaptation.
+                                </p>
+                                <p style="margin-bottom: 0;">
+                                    <strong>Leona Bronet</strong> a elle aussi démontré un mental d'acier. Malgré les
+                                    pièges du tracé qui lui ont coûté de lourdes pénalités, elle s'accroche pour
+                                    décrocher la 39ème place en Manche 1 (Chrono : 1:46.10, 104 pénalités, total :
+                                    210,10) et la 35ème place en Manche 2 (Chrono : 2:15.18, 152 pénalités, total :
+                                    287,18). L'apprentissage passe par ces moments difficiles, et son courage face à un
+                                    bassin aussi sélectif est une immense fierté pour notre club !
+                                </p>
+                            </section>
+
+                            <footer
+                                style="background-color: #0f172a; color: #f8fafc; padding: 2rem; border-radius: 12px; text-align: center;">
+                                <h3 style="font-size: 1.5rem; color: #38bdf8; margin-top: 0; margin-bottom: 1rem;">Le
+                                    C.K.C. Beaurainvillois plus fort que jamais !</h3>
+                                <p style="margin-bottom: 0; font-size: 1.05rem;">
+                                    Ces résultats d'envergure nationale prouvent une nouvelle fois la vitalité, le
+                                    talent et la force mentale de nos athlètes. Que ce soit sur les podiums ou dans le
+                                    combat face aux pénalités, chaque membre de l'équipe a donné le meilleur de
+                                    lui-même. Un immense bravo à tous nos compétiteurs, aux entraîneurs et aux
+                                    supporters qui font battre le cœur de Beaurainville ! L'avenir nous appartient !
+                                </p>
+                            </footer>
+
+                        </article>
+                    </div>
+                </div>
+
+                Les prochains exploits de nos athlètes apparaîtront ici...
+                </p>
+
+            </div>
             </div>
         </section>
 
         <section id="galerie-club" style="padding: 2rem 0 6rem 0; background-color: var(--white);">
             <div class="container">
                 <h2
-                    style="text-align: center; color: var(--dark); font-size: 2.25rem; font-weight: 800; margin-bottom: 3rem;">
+                    style="text-align: center; color: var(--dark); font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem;">
                     Au cœur de l'action
                 </h2>
+                <p style="text-align: center; color: var(--gray); margin-bottom: 4rem;">Plongez dans le quotidien
+                    sportif du CKC Beaurainville.</p>
+
+                <div style="margin-bottom: 5rem;">
+                    <h3
+                        style="color: var(--primary); font-size: 1.8rem; margin-bottom: 2rem; border-left: 5px solid var(--secondary); padding-left: 1rem;">
+                        🏆 L'Élite du Club : Le Pôle Compétition
+                    </h3>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+
+                        <div
+                            style="background: var(--light); border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                            <div class="athlete-photo-frame" id="frame-tao">
+                                <div class="athlete-slider" id="slider-tao">
+                                    <img src="tao_petit(1).jpeg" alt="Tao Petit 1">
+                                    <img src="tao_petit(2).jpeg" alt="Tao Petit 2">
+                                    <img src="tao_petit(3).jpeg" alt="Tao Petit 3">
+                                    <img src="tao_petit(4).jpeg" alt="Tao Petit 4">
+                                    <img src="tao_petit(5).jpeg" alt="Tao Petit 5">
+                                    <img src="tao_petit(6).jpeg" alt="Tao Petit 6">
+                                    <img src="tao_petit(7).jpeg" alt="Tao Petit 7">
+                                    <img src="tao_petit(8).jpeg" alt="Tao Petit 8">
+                                    <img src="tao_petit(9).jpeg" alt="Tao Petit 9">
+
+                                </div>
+                                <div class="slider-nav">
+                                    <span onclick="moveSlider('tao', -1)">❮</span>
+                                    <span onclick="moveSlider('tao', 1)">❯</span>
+                                </div>
+                            </div>
+
+                            <div style="padding: 1.5rem;">
+                                <h4
+                                    style="color: var(--dark); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.25rem;">
+                                    PETIT Tao</h4>
+                                <p
+                                    style="color: var(--secondary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem;">
+                                    Senior • K1H / Kayak Cross</p>
+                                <p
+                                    style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
+                                    🥇 Palmarès : Vice-Champion d'Europe (équipe) & 5ème (indiv.)</p>
+                                <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.5;">Athlète explosif et
+                                    cadre sous les couleurs de l'Équipe de France, Tao a marqué les esprits avec son
+                                    superbe titre continental par équipe et sa 5ème place aux Championnats d'Europe.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            style="background: var(--light); border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                            <div
+                                style="width: 100%; height: 250px; background-color: #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                <span style="font-size: 3rem;">🛶</span>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h4
+                                    style="color: var(--dark); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.25rem;">
+                                    LEBLOND Yvan</h4>
+                                <p
+                                    style="color: var(--secondary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem;">
+                                    Senior • C1H</p>
+                                <p
+                                    style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
+                                    🥇 Palmarès : Vainqueur de la Coupe de France N2 (2025)</p>
+                                <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.5;">Valeur sûre du
+                                    circuit (génération 2001), Yvan a écrasé la concurrence en remportant avec brio le
+                                    classement général de la Coupe de France N2. C'est un spécialiste très expérimenté
+                                    du canoë monoplace qui allie force athlétique et grande constance.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            style="background: var(--light); border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                            <div
+                                style="width: 100%; height: 250px; background-color: #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                <span style="font-size: 3rem;">🛶</span>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h4
+                                    style="color: var(--dark); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.25rem;">
+                                    LEROY Callie</h4>
+                                <p
+                                    style="color: var(--secondary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem;">
+                                    U18 • K1D / C1D</p>
+                                <p
+                                    style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
+                                    ⭐ Palmarès : 1ère Coupe de France N2 (2025) & Top 5 N1 (2026)</p>
+                                <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.5;">Issue de la
+                                    génération 2009, Callie affiche une progression fulgurante. Après avoir
+                                    outrageusement dominé la Coupe de France N2 en U18, elle confirme son statut de
+                                    grand espoir national en se hissant directement dans le Top 5 du circuit N1.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            style="background: var(--light); border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+                            <div
+                                style="width: 100%; height: 250px; background-color: #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                <span style="font-size: 3rem;">🛶</span>
+                            </div>
+                            <div style="padding: 1.5rem;">
+                                <h4
+                                    style="color: var(--dark); font-size: 1.4rem; font-weight: 800; margin-bottom: 0.25rem;">
+                                    POUILLY Emma</h4>
+                                <p
+                                    style="color: var(--secondary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem;">
+                                    U23 • K1D / C1D</p>
+                                <p
+                                    style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
+                                    ⭐ Palmarès : Régularité confirmée en circuit N2/N1</p>
+                                <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.5;">Génération 2005,
+                                    Emma est une compétitrice aguerrie. Évoluant désormais en catégorie U23, elle prouve
+                                    sa détermination saison après saison en s'imposant durablement sur les listes
+                                    nationales dans plusieurs embarcations.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <h3
+                    style="color: var(--primary); font-size: 1.8rem; margin-bottom: 2rem; border-left: 5px solid var(--secondary); padding-left: 1rem;">
+                    📸 Vie du groupe & Bassin
+                </h3>
                 <div class="gallery-grid">
                     <div class="gallery-card">
                         <img src="photo-equipe.jpg" alt="L'équipe du CKC Beaurainville" class="gallery-item"
@@ -714,7 +1204,7 @@
             const contenu = element.nextElementSibling.innerHTML;
             document.getElementById('modal-contenu').innerHTML = contenu;
             document.getElementById('modal-article').style.display = 'block';
-            
+
             // 🎯 LE SNIPER ANALYTICS : On récupère le titre et on l'envoie à Google
             const titreArticle = btn.parentElement.querySelector('h3').innerText;
             gtag('event', 'ouverture_article', {
@@ -724,6 +1214,35 @@
         function fermerArticle() {
             document.getElementById('modal-article').style.display = 'none';
         }
+    </script>
+
+    <script>
+        // Configuration de la pellicule (Tao a 9 photos)
+        const slidersState = {
+            tao: { index: 0, count: 9 }
+        };
+
+        function moveSlider(id, direction) {
+            const state = slidersState[id];
+            const slider = document.getElementById('slider-' + id);
+
+            state.index += direction;
+
+            // Fait boucler le carrousel
+            if (state.index >= state.count) state.index = 0;
+            if (state.index < 0) state.index = state.count - 1;
+
+            // Déplace la pellicule
+            slider.style.transform = `translateX(${-state.index * 100}%)`;
+        }
+
+        // Défilement automatique toutes les 4 secondes
+        setInterval(() => {
+            // Vérifie si le slider existe sur la page avant de le bouger
+            if (document.getElementById('slider-tao')) {
+                moveSlider('tao', 1);
+            }
+        }, 4000);
     </script>
 </body>
 
