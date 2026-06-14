@@ -602,25 +602,33 @@
             fetch('club.html')
                 .then(response => response.text())
                 .then(html => {
-                    // On transforme le texte en vrai code compréhensible par le navigateur
                     const parser = new DOMParser();
                     const doc = parser.parseFromString(html, 'text/html');
 
-                    // On cherche la toute première "carte" d'article
-                    const dernierArticle = doc.querySelector('.article-card');
+                    // ICI ON PREND TOUS LES ARTICLES
+                    const tousLesArticles = doc.querySelectorAll('.article-card');
 
-                    if (dernierArticle) {
-                        // On modifie le bouton pour rediriger vers la page club
-                        const bouton = dernierArticle.querySelector('button');
-                        if (bouton) {
-                            bouton.removeAttribute('onclick'); // On enlève l'ouverture de la fenêtre
-                            bouton.onclick = () => { window.location.href = 'club.html'; }; // On redirige
-                            bouton.innerText = "Lire l'article sur la page Club ➔";
+                    if (tousLesArticles.length > 0) {
+                        conteneurAccueil.innerHTML = ''; // On efface le texte de chargement
+
+                        // REGLAGE : Combien d'articles tu veux sur l'accueil ? 
+                        // (Mets tousLesArticles.length si tu les veux absolument TOUS)
+                        const nombreAAfficher = Math.min(3, tousLesArticles.length); // Ici j'ai mis 3 maximum
+
+                        for (let i = 0; i < nombreAAfficher; i++) {
+                            let article = tousLesArticles[i].cloneNode(true); // On copie l'article
+
+                            // On modifie le bouton pour rediriger vers la page club
+                            const bouton = article.querySelector('button');
+                            if (bouton) {
+                                bouton.removeAttribute('onclick'); // On enlève la fenêtre modale
+                                bouton.onclick = () => { window.location.href = 'club.html'; }; // Redirection
+                                bouton.innerText = "Lire l'article sur la page Club ➔";
+                            }
+
+                            // On ajoute l'article à l'accueil
+                            conteneurAccueil.appendChild(article);
                         }
-
-                        // On efface le texte de chargement et on colle la carte
-                        conteneurAccueil.innerHTML = '';
-                        conteneurAccueil.appendChild(dernierArticle);
                     } else {
                         conteneurAccueil.innerHTML = '<p>Aucune compétition récente à afficher.</p>';
                     }
