@@ -1000,7 +1000,8 @@
                                     ⭐ Palmarès : 1ère Coupe de France N2 (2025) & Top 5 U18 N1 (2026)</p>
                                 <p style="color: var(--gray); font-size: 0.9rem; line-height: 1.5;">Issue de la
                                     génération 2009, Callie affiche une progression fulgurante. Après avoir
-                                    outrageusement dominé la Coupe de France N2 sur le classement général, elle confirme son statut de
+                                    outrageusement dominé la Coupe de France N2 sur le classement général, elle confirme
+                                    son statut de
                                     grand espoir national en se hissant directement dans le Top 5 du circuit N1.</p>
                             </div>
                         </div>
@@ -1229,14 +1230,17 @@
     </script>
 
     <script>
-        // Configuration de la pellicule (Tao a 9 photos)
+        // Configuration des pellicules (Tao a 9 photos, Callie en a 8)
         const slidersState = {
-            tao: { index: 0, count: 9 }
+            tao: { index: 0, count: 9 },
+            callie: { index: 0, count: 8 }
         };
 
         function moveSlider(id, direction) {
             const state = slidersState[id];
             const slider = document.getElementById('slider-' + id);
+
+            if (!slider) return; // Sécurité si le slider n'est pas trouvé
 
             state.index += direction;
 
@@ -1250,9 +1254,13 @@
 
         // Défilement automatique toutes les 4 secondes
         setInterval(() => {
-            // Vérifie si le slider existe sur la page avant de le bouger
+            // Fait défiler Tao
             if (document.getElementById('slider-tao')) {
                 moveSlider('tao', 1);
+            }
+            // Fait défiler Callie
+            if (document.getElementById('slider-callie')) {
+                moveSlider('callie', 1);
             }
         }, 4000);
     </script>
