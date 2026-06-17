@@ -599,23 +599,24 @@
 
                 fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                     .then(response => {
+                        // 1. Affiche le message de succès immédiatement
                         msgSucces.style.display = "block";
                         btnSubmit.textContent = "SOUMETTRE LA DEMANDE";
                         btnSubmit.disabled = false;
                         form.reset();
 
-                        // 1. On remonte l'écran jusqu'à la boîte de sécurité
-                        const boiteSecurite = document.getElementById('boite-securite');
-                        boiteSecurite.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // 2. Attend 2 secondes avant de scroller vers le haut
+                        setTimeout(() => {
+                            const boiteSecurite = document.getElementById('boite-securite');
+                            boiteSecurite.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            boiteSecurite.classList.add('alerte-clignotante');
+                        }, 2000); // Délai de 2000 millisecondes (2 secondes)
 
-                        // 2. On déclenche l'animation rouge
-                        boiteSecurite.classList.add('alerte-clignotante');
-
-                        // 3. On attend 7 secondes pour qu'ils lisent, puis on rafraîchit
+                        // 3. Recharge la page après 8 secondes au total (2s d'attente + 6s pour lire)
                         setTimeout(() => {
                             msgSucces.style.display = "none";
                             window.location.reload();
-                        }, 7000);
+                        }, 8000);
 
                     }).catch(error => { btnSubmit.textContent = "Erreur - Réessayer"; btnSubmit.disabled = false; });
             });
