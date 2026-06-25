@@ -246,17 +246,110 @@
             border-top: 1px solid #1e293b;
         }
 
+        /* --- MENU BURGER ET ADAPTATION MOBILE --- */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 6px 0;
+            transition: 0.3s;
+            border-radius: 3px;
+        }
+
+        /* Le fameux bouton "Toujours visible" en bas de l'écran */
+        .btn-flottant-mobile {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            box-shadow: 0 4px 15px rgba(20, 184, 166, 0.5);
+            z-index: 9999;
+            text-decoration: none;
+            text-align: center;
+            animation: pulse-spring 3s infinite;
+        }
+
+        /* CE QUI SE PASSE SUR PETIT ÉCRAN (SMARTPHONE) */
         @media (max-width: 768px) {
+
+            /* 1. On réduit légèrement tous les textes */
+            html {
+                font-size: 14.5px;
+            }
+
+            h1,
+            .hero h1 {
+                font-size: 2rem !important;
+            }
+
+            h2,
+            .section-title {
+                font-size: 1.7rem !important;
+            }
+
+            h3 {
+                font-size: 1.3rem !important;
+            }
+
+            /* 2. On regroupe le menu (Menu Burger) */
             .nav-container {
-                flex-direction: column;
-                gap: 1.25rem;
+                flex-direction: row;
+                /* Garde le logo et le bouton alignés */
+                justify-content: space-between;
+                flex-wrap: wrap;
+                /* Autorise le menu à passer à la ligne */
+            }
+
+            .hamburger {
+                display: block;
+                /* On affiche les 3 barres */
             }
 
             .nav-menu {
+                display: none;
+                /* On cache les liens par défaut */
                 flex-direction: column;
                 width: 100%;
-                gap: 0.75rem;
-                justify-content: center;
+                padding: 1rem 0;
+                gap: 1.2rem;
+                text-align: center;
+                border-top: 1px solid #e2e8f0;
+                margin-top: 10px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+                /* Affiche le menu quand on clique sur les 3 barres */
+            }
+
+            /* 3. On cache le bouton de base, on affiche le bouton flottant */
+            .nav-btn {
+                display: none;
+            }
+
+            .btn-flottant-mobile {
+                display: block;
+            }
+
+            /* 4. Le formulaire de réservation passe ligne par ligne ! */
+            #resa-form div {
+                grid-template-columns: 1fr !important;
+                /* Force 1 seule colonne */
+                gap: 1rem !important;
             }
         }
 
@@ -491,23 +584,31 @@
 <body>
     <nav class="navbar" role="navigation" aria-label="Menu principal">
         <div class="nav-container">
-            <a href="index.html" class="brand"><img src="11de11_9b89bfc1b85f45a6814754eac23f5df9~mv2.jpg"
-                    alt="Logo CKC Beaurainville" class="brand-logo"></a>
-            <ul class="nav-menu">
+            <a href="index.html" class="brand">
+                <img src="11de11_9b89bfc1b85f45a6814754eac23f5df9~mv2.jpg" alt="Logo CKC Beaurainville"
+                    class="brand-logo">
+            </a>
+
+            <button class="hamburger" id="hamburger-btn" aria-label="Ouvrir le menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="nav-menu">
                 <li><a href="index.html" class="nav-link">Accueil</a></li>
                 <li><a href="loisirs.html" class="nav-link">Locations & Loisirs</a></li>
-                <li><a href="club.html" class="nav-link" style="color: var(--primary); font-weight: 800;">Le Club
-                        Sportif</a></li>
+                <li><a href="club.html" class="nav-link">Le Club Sportif</a></li>
                 <li><a href="groupes.html" class="nav-link">Espace Groupes</a></li>
                 <li><a href="index.html#sponsoring"
-                        style="color: #d9534f; font-weight: 800; text-decoration: none; padding: 0.5rem 0.75rem; transition: 0.3s;">Devenir
+                        style="color: #d9534f; font-weight: 800; text-decoration: none; padding: 0.5rem 0.75rem;">Devenir
                         Sponsor</a></li>
-                <li><a href="loisirs.html#reservation" class="nav-btn bouncy-btn"
-                        onclick="gtag('event', 'clic_reservation', { 'emplacement': 'menu_haut' });">Réserver en
-                        ligne</a></li>
+                <li><a href="loisirs.html#reservation" class="nav-btn bouncy-btn">Réserver en ligne</a></li>
             </ul>
         </div>
     </nav>
+
+    <a href="loisirs.html#reservation" class="btn-flottant-mobile">Réserver ➔</a>
 
     <main>
         <section style="padding: 6rem 1.5rem; background-color: var(--white);">
@@ -1263,6 +1364,21 @@
                 moveSlider('callie', 1);
             }
         }, 4000);
+    </script>
+
+    <script>
+        // Fonctionnement du Menu Burger pour Mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger-btn');
+            const menu = document.getElementById('nav-menu');
+
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    // Ajoute ou enlève la classe "active" pour afficher/cacher
+                    menu.classList.toggle('active');
+                });
+            }
+        });
     </script>
 </body>
 
