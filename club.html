@@ -1050,9 +1050,25 @@
 
                         <div
                             style="background: var(--light); border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
-                            <div
-                                style="width: 100%; height: 250px; background-color: #cbd5e1; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                                <span style="font-size: 3rem;">🛶</span>
+                            <div class="athlete-photo-frame" id="frame-yvan">
+                                <div class="athlete-slider" id="slider-yvan">
+                                    <img src="Yvan(1).jpeg" alt="Yvan Leblond - Photo 1">
+                                    <img src="Yvan(2).jpeg" alt="Yvan Leblond - Photo 2">
+                                    <img src="Yvan(3).jpeg" alt="Yvan Leblond - Photo 3">
+                                    <img src="Yvan(4).jpeg" alt="Yvan Leblond - Photo 4">
+                                    <img src="Yvan(5).jpeg" alt="Yvan Leblond - Photo 5">
+                                    <img src="Yvan(6).jpeg" alt="Yvan Leblond - Photo 6">
+                                    <img src="Yvan(7).jpeg" alt="Yvan Leblond - Photo 7">
+                                    <img src="Yvan(8).jpeg" alt="Yvan Leblond - Photo 8">
+                                    <img src="Yvan(9).jpeg" alt="Yvan Leblond - Photo 9">
+                                    <img src="Yvan(10).jpeg" alt="Yvan Leblond - Photo 10">
+                                    <img src="Yvan(11).jpeg" alt="Yvan Leblond - Photo 11">
+                                    <img src="Yvan(12).jpeg" alt="Yvan Leblond - Photo 12">
+                                </div>
+                                <div class="slider-nav">
+                                    <span onclick="moveSlider('yvan', -1)">❮</span>
+                                    <span onclick="moveSlider('yvan', 1)">❯</span>
+                                </div>
                             </div>
                             <div style="padding: 1.5rem;">
                                 <h4
@@ -1060,7 +1076,7 @@
                                     LEBLOND Yvan</h4>
                                 <p
                                     style="color: var(--secondary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 1rem;">
-                                    Senior • C1H</p>
+                                    Senior • C1H et K1H</p>
                                 <p
                                     style="color: var(--primary); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">
                                     🥇 Palmarès : Vainqueur de la Coupe de France N2 (2025)</p>
@@ -1334,7 +1350,8 @@
         // Configuration des pellicules (Tao a 9 photos, Callie en a 8)
         const slidersState = {
             tao: { index: 0, count: 9 },
-            callie: { index: 0, count: 8 }
+            callie: { index: 0, count: 8 },
+            yvan: { index: 0, count: 12 }
         };
 
         function moveSlider(id, direction) {
@@ -1362,6 +1379,10 @@
             // Fait défiler Callie
             if (document.getElementById('slider-callie')) {
                 moveSlider('callie', 1);
+            }
+            // Fait défiler Yvan
+            if (document.getElementById('slider-yvan')) {
+                moveSlider('yvan', 1);
             }
         }, 4000);
     </script>
