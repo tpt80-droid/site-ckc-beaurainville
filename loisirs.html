@@ -500,6 +500,92 @@
             /* Clignote 6 fois */
             animation: clignotement-orange 0.5s ease-in-out 6;
         }
+
+        /* ========================================= */
+        /* AFFICHE SPÉCIALE (Survol PC + Fixe Mobile)*/
+        /* ========================================= */
+        .affiche-speciale-container {
+            position: relative;
+            width: 100%;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            /* Garde le fond noir strictement dans les bords ronds */
+        }
+
+        /* L'effet de zoom global */
+        .affiche-speciale-container:hover {
+            transform: scale(1.02);
+        }
+
+        .affiche-speciale-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Le fond noir (Caché par défaut sur PC) */
+        .affiche-speciale-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            /* Le voile sombre */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem;
+            opacity: 0;
+            /* Invisible */
+            transition: opacity 0.3s ease;
+        }
+
+        /* Révélation au passage de la souris */
+        .affiche-speciale-container:hover .affiche-speciale-overlay {
+            opacity: 1;
+            /* Devient visible */
+        }
+
+        /* Textes sur PC (Sur fond noir) */
+        .affiche-speciale-overlay h3 {
+            color: var(--secondary);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .affiche-speciale-overlay p {
+            color: #f8fafc;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        /* COMPORTEMENT SUR MOBILE (Moins de 768px) */
+        @media (max-width: 768px) {
+            .affiche-speciale-overlay {
+                position: relative;
+                /* S'enlève de l'image et passe en dessous */
+                opacity: 1;
+                /* Toujours visible */
+                background-color: #f0fdfa;
+                /* Fond clair pour la lisibilité */
+                padding: 1.5rem 1rem;
+            }
+
+            .affiche-speciale-overlay h3 {
+                color: var(--secondary-hover);
+                font-size: 1.2rem;
+            }
+
+            .affiche-speciale-overlay p {
+                color: var(--dark);
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 
@@ -540,15 +626,22 @@
         </div>
 
         <section id="flyers" style="padding: 6rem 1.5rem; background-color: var(--white);">
-            <div class="container">
-                <h2 class="section-title">Tarifs & Carte des Parcours</h2>
-                <div class="flyer-grid">
-                    <img src="Nos-sorties-estivale- 2026 (2)_page-0001.jpg" alt="Tarifs Location" class="flyer-img"
-                        loading="lazy">
-                    <img src="fiche-buvette_page-0001.jpg" alt="Tarifs Location" class="flyer-img" loading="lazy">
-                    <img src="flyer-recto.jpg" alt="Tarifs Location" class="flyer-img" loading="lazy">
-                    <img src="flyer-verso.jpg" alt="Carte des parcours" class="flyer-img" loading="lazy">
+
+            <div class="flyer-grid">
+                <div class="affiche-speciale-container">
+                    <img src="Nos-sorties-estivale- 2026 (2)_page-0001.jpg" alt="Randonnées Spéciales" loading="lazy">
+
+                    <div class="affiche-speciale-overlay">
+                        <h3>🛶 Tentez l'aventure !</h3>
+                        <p>Ces parcours sur-mesure demandent une petite organisation.</p>
+                        <p>La réservation se fait <strong>exclusivement par téléphone ou e-mail</strong>.</p>
+                        <p style="font-size: 0.85rem; font-style: italic; opacity: 0.8;">(Non disponible via la
+                            réservation en ligne)</p>
+                    </div>
                 </div>
+                <img src="fiche-buvette_page-0001.jpg" alt="Tarifs Location" class="flyer-img" loading="lazy">
+                <img src="flyer-recto.jpg" alt="Tarifs Location" class="flyer-img" loading="lazy">
+                <img src="flyer-verso.jpg" alt="Carte des parcours" class="flyer-img" loading="lazy">
             </div>
         </section>
 
